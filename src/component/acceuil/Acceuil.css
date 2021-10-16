@@ -1,0 +1,95 @@
+@import url('http://fonts.cdnfonts.com/css/sawasdee');
+.acceuil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.welcome-h3{
+    font-family: sawasdee;
+    color: #008000;
+}
+.acceuil-client-form{
+    display: flex;
+    flex-direction: column;
+}
+.client-form-mail{
+    width: 30em;
+    height: 3em;
+    /* background: #008000; */
+    color: #003600;
+    border: 1px solid #008000;
+    border-radius: 15px;
+    padding-left: 20px;
+    font-family: sans-serif;
+    outline-color:rgb(170, 4, 4); ;
+}
+.client-form-phone{
+    width: 30em;
+    height: 3em;
+    /* background: #008000; */
+    color: #003600;
+    border: 1px solid #008000;
+    border-radius: 15px;
+    padding-left: 20px;
+    font-family: sans-serif;
+}
+.client-form-name{
+    width: 30em;
+    height: 3em;
+    /* background: #008000; */
+    color: #003600;
+    border: 1px solid #008000;
+    border-radius: 15px;
+    padding-left: 20px;
+    font-family: sans-serif;
+}
+.main-form-select-price{
+    width: 32em;
+    height: 3em;
+    /* background: #008000; */
+    color: #003600;
+    border: 1px solid #008000;
+    border-radius: 15px;
+    padding-left: 10px;
+    /* padding-right: 20px; */
+    font-family: sans-serif;
+}
+.client-text-textarea{
+   max-width: 33em;
+    /* background: #008000; */
+    color: #003600;
+    border: 1px solid #008000;
+    border-radius: 5px;
+    padding-left: 20px;
+    font-family: sans-serif;
+    margin-top: 20px;
+}
+
+.acceuil-client-form,.client-form-phone,.client-form-name{
+    margin-top: 20px;
+}
+
+.client-title{
+    font-family: sawasdee;
+    color: #008000;
+    font-size: 20px;
+}
+.select-title{
+    font-family: sawasdee;
+    color: #008000;
+    font-size: 15px;
+}
+.submit-button{
+    height: 2.5em;
+    margin-top: 20px;
+    width: 20em;
+    border-radius: 20px;
+    background: #003600;
+    border: none;
+    color:white;
+    cursor: pointer;
+}
+.submit-button:hover{
+    border:2px solid rgb(68, 2, 2);
+}
