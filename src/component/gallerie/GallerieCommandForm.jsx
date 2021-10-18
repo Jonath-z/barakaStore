@@ -1,49 +1,13 @@
-import './Acceuil.css';
-import logo from '../../assets/barakaStore-logo.jpg';
-import { IoMailOutline } from 'react-icons/io5';
-import { IoLogoWhatsapp } from 'react-icons/io5';
-import { RiFacebookCircleLine } from 'react-icons/ri';
-import { IoLogoInstagram } from 'react-icons/io5';
-import { useHistory } from 'react-router-dom';
+
+import '../acceuil/Acceuil.css';
 import Resizer from 'react-image-file-resizer';
 import { useState } from 'react';
 import { storageDB, realTimeDB } from '../modules/firebase';
 import uuid from 'react-uuid';
 import { useCookies } from 'react-cookie';
+import { MdCancel } from 'react-icons/md';
 
-// ///////////////////////////////// ACCEUIL ///////////////////////////////////
-export const Main = () => {
-    let history = useHistory();
-    const redirectToGallerie = () => {
-        history.push('/Gallerie');
-    }
-    return (
-        <div className='main'>
-            <div className='main-option-container'>
-                <ul className='option-ul'>
-                    <li className='option-li option-acceuil'>Acceuil</li>
-                    <li className='option-li option-gallerie' onClick={redirectToGallerie}>Gallerie</li>
-                    <li className='option-li option-catalogue'>Catalogue</li>
-                    <li className='option-li option-sousrire'>Souscrire</li>
-                </ul>
-            </div>
-            <div className='main-logo-container'>
-                <img src={logo} alt='logo' className='logo' />
-            </div>
-            <div className='main-icons-container'>
-                <ul className='icons-ul'>
-                    <li className='icons-li'><IoMailOutline /></li>
-                    <li className='icons-li'><IoLogoWhatsapp /></li>
-                    <li className='icons-li'><RiFacebookCircleLine /></li>
-                    <li className='icons-li'><IoLogoInstagram /></li>
-                </ul>
-            </div>
-        </div>
-    );
-}
-
-/////////////////////////////  ACCEUIL INPUT FORM ////////////////////////////////////////
-export const Acceuil = () => {
+const GallerieCommandForm = (props) => {
     const [uploadedImg, setUploadedImg] = useState();
     const [clientEmail, setClientEmail] = useState('');
     const [clientPhone, setClientPhone] = useState('');
@@ -102,6 +66,7 @@ export const Acceuil = () => {
             destinationPhone: `${destinationPhone}`,
             commadDetails:`${commadDetails}`,
             payementProof: `${uploadedImg}`,
+            model:`${props.model}`,
             date: `${today.toLocaleString()}`
         });
         const expire = new Date();
@@ -121,10 +86,14 @@ export const Acceuil = () => {
         document.querySelector('.client-payement-proof').value = '';
         console.log(today.toLocaleString())
     }
-
     return (
-        <div className='acceuil'>
-            <h3 className='welcome-h3'>Bienvenue chez BarakaStore,passez votre commande</h3>
+
+        <div className='GallerieCommandForm' style={{
+            display: props.display
+        }}>
+            <div className='acceuil'>
+                <h3 className='welcome-h3'>Passez votre commande</h3>
+                <MdCancel className='cancel-icon' onClick={props.closeCommande}/>
             <div className='acceuil-client-form'>
                 <h4 className='client-title'>Client</h4>
                 <input className='client-form-mail' type='email' placeholder='Email' value={cookie.clientEmail} name='clientMail' onChange={(e) => { setClientEmail(e.target.value) }} />
@@ -156,6 +125,8 @@ export const Acceuil = () => {
                 }
             </div>
         </div>
-    );
+        </div>
+    )
 }
 
+export default GallerieCommandForm

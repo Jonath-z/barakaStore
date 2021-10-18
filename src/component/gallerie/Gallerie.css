@@ -1,0 +1,169 @@
+@import url('http://fonts.cdnfonts.com/css/sawasdee');
+html{
+    scroll-behavior: smooth;
+}
+.gallerie{
+    display: flex;
+    flex-direction: column;
+}
+.gallerie-content{
+    margin-top: 100px;
+    left: 20em;
+    right:20em;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    z-index: -1;
+}
+.gallery-photo-container{
+    display: flex;
+    flex-direction: row;
+    max-width: 80%;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    /* position: absolute; */
+}
+/* .gallery-photo{
+    margin-left: 10px;
+} */
+.gallery-theme{
+    font-family: sawasdee;
+    color: #008000;
+    font-size: 20px;
+}
+.image-global-div{
+    position: relative;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.image-details-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background: #f1f3f1bb;
+    opacity: 0;
+    transition: opacity 300ms;
+}
+.image-global-div:hover .image-details-container{
+    opacity: 1;
+    animation: image-details 300ms linear;
+}
+@keyframes image-details{
+    0%{
+        height: 0%;
+    }
+    20%{
+        height: 20%;
+    }
+    40%{
+        height: 40%;
+    }
+    60%{
+        height: 60%;
+    }
+    80%{
+        height: 80%;
+    }
+    100%{
+        height: 100%;
+    }
+}
+.image-details{
+    color:#008000;
+    font-family: sawasdee;
+    vertical-align: middle;
+}
+hr{
+    color: #008000;
+    margin: 0px 30px 0px 30px;
+}
+.theme-h4{
+    color: #008000;
+}
+.option-ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    text-align: center;
+    margin-left: 250px;
+
+}
+.option-li{
+    list-style: none;
+    margin-left: 50px;
+    font-size: 30px;
+    font-family: 'sawasdee' ;
+    color: #008000;
+    cursor: pointer;
+}
+.option-li:hover{
+    border-bottom:3px solid rgb(170, 4, 4);
+    animation: borderbottom ease 900ms;
+}
+.option-acceuil{
+    border-bottom: none ;
+}
+.option-Gallerie{
+    border-bottom: 3px solid rgb(170, 4, 4) ;
+}
+.option-catalogue{
+    border-bottom: none ;
+}
+.option-sousrire{
+    border-bottom: none ;
+}
+@keyframes boderbottom{
+    0%{
+        width: 50%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+.GallerieCommandForm{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.712);
+    animation: open-gallerie-command 400ms ease;
+    transition: animation 200ms;
+}
+@keyframes open-gallerie-command{
+    0%{
+        height: 0vh;
+        width: 0%;
+    }
+    20%{
+        height: 20vh;
+        width: 20%;
+    }
+    40%{
+        height: 40vh;
+        width: 40%;
+    }
+    60%{
+        height: 60vh;
+        width: 60%;
+    }
+    80%{
+        height: 80vh;
+        width: 80%;
+    }
+    100%{
+        height: 100vh;
+        width: 100%;
+    }
+}
+.cancel-icon{
+    position: absolute;
+    right: 50px;
+    font-size: 30px;
+    top: 30px;
+    color: #011b01;
+    cursor: pointer;
+}

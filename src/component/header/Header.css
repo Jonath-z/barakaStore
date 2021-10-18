@@ -1,0 +1,40 @@
+@import url('http://fonts.cdnfonts.com/css/sawasdee');
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
+.Header{
+    position: fixed;
+    width: 100%;
+    background: #008000;
+    display: flex;
+    flex-direction: row;
+}
+.header-option-container{
+    position:absolute;
+    right: 100px;
+}
+.header-startup-name-container{
+    margin-left: 100px;
+}
+.startup-name,.startup-slogant{
+    color: white;
+}
+.startup-slogant{
+    font-family: sawasdee;
+    font-size: 12px;
+    margin-left: 30px;
+    margin-top: -10px;
+}
+.startup-name{
+    font-family: 'Italianno';
+    font-size: 56px;
+    margin-top: -5px;
+    margin-bottom: -20px;
+    cursor: pointer;
+}
+.header-li{
+    color: white;
+}
+
+.option-acceuil{
+    border: none;
+}

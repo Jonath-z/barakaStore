@@ -13,7 +13,10 @@
     display: flex;
     flex-direction: column;
 }
-.client-form-mail{
+/* .upload-state{
+    
+} */
+.client-form-mail,.client-form-phone,.client-form-name{
     width: 30em;
     height: 3em;
     /* background: #008000; */
@@ -22,27 +25,34 @@
     border-radius: 15px;
     padding-left: 20px;
     font-family: sans-serif;
-    outline-color:rgb(170, 4, 4); ;
+    outline-color:rgb(170, 4, 4) ;
+    outline-width: 1px;
+    box-shadow: 1px 1px 5px #003600;
 }
-.client-form-phone{
+.client-payement-proof{
     width: 30em;
-    height: 3em;
+    height: 2em;
     /* background: #008000; */
     color: #003600;
     border: 1px solid #008000;
-    border-radius: 15px;
+    border-radius: 5px;
     padding-left: 20px;
     font-family: sans-serif;
+    outline-color:rgb(170, 4, 4) ;
+
+    margin-top: -20px;
+    padding-top: 5px;
+    box-shadow: 1px 1px 5px #003600;
 }
-.client-form-name{
-    width: 30em;
-    height: 3em;
-    /* background: #008000; */
-    color: #003600;
-    border: 1px solid #008000;
-    border-radius: 15px;
-    padding-left: 20px;
-    font-family: sans-serif;
+input[type=file]::file-selector-button {
+    background: #008000;
+    border: none;
+    color: white;
+    padding: 3px;
+    border-radius: 2px;
+}
+input[type=file]::file-selector-button:hover{
+    background: #003600;
 }
 .main-form-select-price{
     width: 32em;
@@ -54,20 +64,23 @@
     padding-left: 10px;
     /* padding-right: 20px; */
     font-family: sans-serif;
+    box-shadow: 1px 1px 5px #003600;
 }
 .client-text-textarea{
    max-width: 33em;
     /* background: #008000; */
     color: #003600;
     border: 1px solid #008000;
+    /* border: none; */
     border-radius: 5px;
     padding-left: 20px;
     font-family: sans-serif;
     margin-top: 20px;
+    box-shadow: 1px 1px 5px #003600;
 }
 
 .acceuil-client-form,.client-form-phone,.client-form-name{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .client-title{
@@ -92,4 +105,103 @@
 }
 .submit-button:hover{
     border:2px solid rgb(68, 2, 2);
+}
+
+
+
+/* /////////////////// MAIN CLASS ///////////////////////////// */
+@import url('http://fonts.cdnfonts.com/css/sawasdee');
+.App{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+.main{
+    width: 50%;
+    position: absolute;
+    height: 100%;
+}
+.option-content{
+    width: 50%;
+    position: absolute;
+    height: 100%;
+    right: 0;
+}
+.main-option-container{
+    width: 50%;
+}
+.option-ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    text-align: center;
+    margin-left: 250px;
+
+}
+.option-li{
+    list-style: none;
+    margin-left: 50px;
+    font-size: 30px;
+    font-family: 'sawasdee' ;
+    color: #008000;
+    cursor: pointer;
+}
+.option-li:hover{
+    border-bottom:3px solid rgb(170, 4, 4);
+    animation: borderbottom ease 900ms;
+}
+.option-acceuil{
+    border-bottom: 3px solid rgb(170, 4, 4) ;
+}
+.option-Gallerie{
+    border-bottom: none ;
+}
+.option-catalogue{
+    border-bottom: none ;
+}
+.option-sousrire{
+    border-bottom: none ;
+}
+@keyframes boderbottom{
+    0%{
+        width: 50%;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+.main-logo-container{
+    width: 50%;
+
+}
+.logo{
+    width: 900px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    display: flex;
+    margin-top: 20px;
+}
+.main-icons-container{
+    width: 50%;
+}
+.icons-ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    text-align: center;
+    margin-left: 300px;
+}
+.icons-li{
+    list-style: none;
+    margin-left: 70px;
+    font-size: 30px;
+    font-family: 'sawasdee' ;
+    color: #008000;
+    cursor: pointer;
+}
+.icons-li:hover{
+    font-size: 35px;
+    transition: 400ms;
 }
