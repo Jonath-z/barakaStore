@@ -4,6 +4,8 @@ import { Acceuil } from './component/acceuil/Acceuil';
 import Gallerie from './component/gallerie/Gallerie';
 import { Main } from './component/acceuil/Acceuil';
 import Dashbord from './component/dashbord/Dashbord';
+import Catalogue from './component/catalogue/Catalogue';
+import Souscrire from './component/souscrire/Souscrire';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         )} />
         <Route path='/Gallerie' component={Gallerie} />
         <Route path='/Dashbord' component={Dashbord} />
+        <Route path='/Catalogue' component={Catalogue} />
+        <Route path='/Souscrire' component={Souscrire}/>
       </>
     </Router>
   );
