@@ -17,14 +17,20 @@ export const Main = () => {
     const redirectToGallerie = () => {
         history.push('/Gallerie');
     }
+    const redirectToCatalogue = () => {
+        history.push('/Catalogue');
+    }
     return (
+        <>
         <div className='main'>
             <div className='main-option-container'>
                 <ul className='option-ul'>
                     <li className='option-li option-acceuil'>Acceuil</li>
                     <li className='option-li option-gallerie' onClick={redirectToGallerie}>Gallerie</li>
-                    <li className='option-li option-catalogue'>Catalogue</li>
-                    <li className='option-li option-sousrire'>Souscrire</li>
+                    <li className='option-li option-catalogue' onClick={redirectToCatalogue}>Catalogue</li>
+                        <li className='option-li option-sousrire' onClick={() => {
+                            history.push('/Souscrire')
+                    }}>Souscrire</li>
                 </ul>
             </div>
             <div className='main-logo-container'>
@@ -32,13 +38,14 @@ export const Main = () => {
             </div>
             <div className='main-icons-container'>
                 <ul className='icons-ul'>
-                    <li className='icons-li'><IoMailOutline /></li>
-                    <li className='icons-li'><IoLogoWhatsapp /></li>
-                    <li className='icons-li'><RiFacebookCircleLine /></li>
-                    <li className='icons-li'><IoLogoInstagram /></li>
+                   <a href='mailto:barakastore.drc@gmail.com'><li className='icons-li'><IoMailOutline /></li></a>
+                   <a href='https://api.whatsapp.com/send?phone=243976721972'><li className='icons-li'><IoLogoWhatsapp /></li></a>
+                   <a href='https://www.facebook.com/barakastoredrc/'><li className='icons-li'><RiFacebookCircleLine /></li></a>
+                   <a href='https://www.instagram.com/barakastoredrc/'><li className='icons-li'><IoLogoInstagram /></li></a>
                 </ul>
             </div>
-        </div>
+            </div>
+            </>
     );
 }
 
@@ -123,6 +130,7 @@ export const Acceuil = () => {
     }
 
     return (
+        <>
         <div className='acceuil'>
             <h3 className='welcome-h3'>Bienvenue chez BarakaStore,passez votre commande</h3>
             <div className='acceuil-client-form'>
@@ -155,7 +163,8 @@ export const Acceuil = () => {
                 
                 }
             </div>
-        </div>
+            </div>
+            </>
     );
 }
 
