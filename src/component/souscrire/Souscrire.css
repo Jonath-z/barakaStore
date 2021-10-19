@@ -1,0 +1,11 @@
+@import url('http://fonts.cdnfonts.com/css/sawasdee');
+.souscire-content{
+    margin-top: 100px;
+    text-align: center;
+}
+.souscrire-success{
+    font-family: sawasdee;
+    color: #008000;
+    /* color: #00800063; */
+
+}
