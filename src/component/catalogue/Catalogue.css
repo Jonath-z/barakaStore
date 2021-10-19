@@ -1,0 +1,12 @@
+.catalogue-content{
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+
+.catalogueImg{
+    width: 600px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    box-shadow: 1px 1px 100px #d8d8d8;
+}
