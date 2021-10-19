@@ -23,6 +23,52 @@ html{
     scroll-behavior: smooth;
     /* position: absolute; */
 }
+.gallery-photo-container::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+    background: #008000;
+  }
+  
+  /* Track */
+  .gallery-photo-container::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+    width: 5px;
+    height: 3px;
+  }
+   
+  /* Handle */
+  .gallery-photo-container::-webkit-scrollbar-thumb {
+    background: #008000;
+    width: 5px;
+    height: 5px;
+  }
+  
+  /* Handle on hover */
+  .gallery-photo-container::-webkit-scrollbar-thumb:hover {
+    background: #002700
+  }
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+    width: 5px;
+    height: 3px;
+  }
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #008000;
+    width: 5px;
+    height: 5px;
+  }
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #008000
+  }
 /* .gallery-photo{
     margin-left: 10px;
 } */
@@ -44,6 +90,7 @@ html{
     left: 0;
     text-align: center;
     background: #f1f3f1bb;
+     /* background: rgba(255, 192, 203, 0.774); */
     opacity: 0;
     transition: opacity 300ms;
 }
@@ -99,22 +146,7 @@ hr{
     color: #008000;
     cursor: pointer;
 }
-.option-li:hover{
-    border-bottom:3px solid rgb(170, 4, 4);
-    animation: borderbottom ease 900ms;
-}
-.option-acceuil{
-    border-bottom: none ;
-}
-.option-Gallerie{
-    border-bottom: 3px solid rgb(170, 4, 4) ;
-}
-.option-catalogue{
-    border-bottom: none ;
-}
-.option-sousrire{
-    border-bottom: none ;
-}
+
 @keyframes boderbottom{
     0%{
         width: 50%;
