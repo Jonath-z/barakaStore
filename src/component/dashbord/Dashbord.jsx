@@ -1,10 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import Resizer from 'react-image-file-resizer';
-import { storageDB,realTimeDB } from '../modules/firebase';
+import { storageDB, realTimeDB } from '../modules/firebase';
+import AddCatalogue from './AddCatalogue';
 import uuid from 'react-uuid';
 const Dashbord = () => {
-    const [uploadedImg, setUploadedImg] = useState();
+    const [uploadedImg, setUploadedImg] = useState('');
+    const [photoDetails, setPhotoDetails] = useState('');
 
     const [theme, setTheme] = useState('');
     const [uploadState, setUploadState] = useState(0);
@@ -49,7 +51,8 @@ const Dashbord = () => {
             id:`${uuid()}`,
             theme: `${theme}`,
             image: `${uploadedImg}`,
-            date: `${today.toLocaleString()}`
+            date: `${today.toLocaleString()}`,
+            details: `${photoDetails}`
         });
 
         setUploadedImg('');
@@ -62,8 +65,7 @@ const Dashbord = () => {
         <div className='acceuil'>
             
             <div className='acceuil-client-form'>
-                <h4 className='client-title'>Destination</h4>
-                {/* <img src={uploadedImg} alt='uploaded'/> */}
+                <h4 className='client-title'>Ajouter une photo</h4>
                 <select className='client-form-name' type='text' placeholder='Theme' value={theme} name='theme' onChange={(e) => { setTheme(e.target.value) }} >
                     <option value=''>choisir le theme</option>
                     <option value='Bouquet'>Bouquet</option>
@@ -72,15 +74,18 @@ const Dashbord = () => {
                     <option value='Graduation'>Graduation</option>
                     <option value='Saint Valentin'>Saint Valentin</option>
                 </select>
+                <textarea placeholder='Details' className='client-text-textarea' value={photoDetails} name='commandDetails' onChange={(e) => { setPhotoDetails(e.target.value) }} />
                 <h5 className='select-title'>Ajouter une photo dans la gallerie    (<span>chargement: {uploadState}%</span>)</h5>
                 <input type='file' name='payementProof' className='client-payement-proof' onChange={uploadPhoto} />
             </div>
+            <img src={uploadedImg} alt='uploaded'/>
             <div className='submit-button-container'>
                 {
-                    uploadState === 100 && theme !=='' && <button className='submit-button' onClick={addPhotoToGallery}>AJOUTER</button>
+                    uploadState === 100 && theme !=='' && <button className='submit-button' onClick={addPhotoToGallery}>AJOUTER UNE IMAGE</button>
                 
                 }
             </div>
+            <AddCatalogue/>
         </div>
     );
 }
