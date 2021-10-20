@@ -99,8 +99,9 @@ export const Acceuil = () => {
     }
     const sendCommand = () => {
         const today = new Date();
-        realTimeDB.ref('/commades').push({
-            id:`${uuid()}`,
+        const commandID = uuid();
+        realTimeDB.ref('/commades').child(commandID).set({
+            id:`${commandID}`,
             clientEmail: `${clientEmail}`,
             clientPhone: `${clientPhone}`,
             price: `${price}`,

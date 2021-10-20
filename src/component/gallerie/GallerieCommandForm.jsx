@@ -56,8 +56,9 @@ const GallerieCommandForm = (props) => {
     }
     const sendCommand = () => {
         const today = new Date();
-        realTimeDB.ref('/commades').push({
-            id:`${uuid()}`,
+        const commadID = uuid();
+        realTimeDB.ref('/commades').child(commadID).set({
+            id:`${commadID}`,
             clientEmail: `${clientEmail}`,
             clientPhone: `${clientPhone}`,
             price: `${price}`,
