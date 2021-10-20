@@ -1,0 +1,18 @@
+.mail-notify-inputs{
+    padding-top: 50px;
+}
+.mail-notify-text-area{
+    width: 1000px !important;
+    margin-top: 60px;
+    outline: none;
+    max-height: 600px;
+    min-height: 100px;
+    box-shadow: 1px 1px 10px #008000;
+}
+
+.send-button{
+    color: green;
+    width: 100px;
+    padding: 20px;
+    margin-top: 30px;
+}
