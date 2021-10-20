@@ -1,0 +1,28 @@
+.content{
+    position: fixed;
+    background: #008000;
+    color: white;
+    left: 0;
+    height: 100%;
+}
+.content-list{
+    margin-top: 50px;
+}
+.content-list-ul{
+    list-style: none;
+}
+.constent-list-li{
+    margin-top: 20px;
+    padding-right: 20px;
+}
+.constent-list-li:hover{
+    transform: scale(1.2,1.2);
+    transition: 500ms ease;
+    cursor: pointer;
+}
+.list-hr{
+    color: white;
+    margin-top: 20px;
+    margin-left: -10px;
+    margin-right: 10px;
+}
