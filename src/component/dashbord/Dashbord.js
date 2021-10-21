@@ -1,16 +1,19 @@
 import React from 'react';
+import './Dashbord.css';
 import { useState } from 'react';
 import EditCatalogue from './edit/editCatalogue/EditCatalogue';
 import Content from './dashbord-content/Content';
 import EditGallery from './edit/editGallery/EditGallery';
 import Command from './commande/Command';
 import MailNotify from './mail/MailNotify';
+import EditPrice from './editPrice/EditPrice';
+
 
 const Dashbord = () => {
     const [isCommadContent, setIsCommadContent] = useState(true);
     const [isCatalogueContent, setIsCatalogueContent] = useState(false);
     const [isGalleryContent, setIsGalleryContent] = useState(false);
-    const [isNotifiedByMail, setIsNotifiedByMail] = useState(false)
+    const [isNotifiedByMail, setIsNotifiedByMail] = useState(false);
     
     const openContent = (e) => {
         console.log(e.target.innerHTML.toLowerCase());
@@ -39,27 +42,35 @@ const Dashbord = () => {
             setIsCatalogueContent(false);
         }
     }
+
     return (
         <>
-            <Content
-            openContent={openContent}
-            />
-            {isGalleryContent &&
-                <EditGallery />
-            }
-            {isCatalogueContent &&
-                <div className='acceuil'>
-                <EditCatalogue />
-                </div>
-            }
-            {
-                isCommadContent &&
-                <Command/>
-            }
-            {
-                isNotifiedByMail &&
-                <MailNotify/>
-            }
+            {window.location.search.replace('?id=','') !== '' &&<div>
+                <Content
+                    openContent={openContent}
+                />
+                {isGalleryContent &&
+                    <EditGallery />
+                }
+                {isCatalogueContent &&
+                    <div className='acceuil'>
+                        <EditCatalogue />
+                    </div>
+                }
+                {
+                    isCommadContent &&
+                    <div className='command-component'>
+                        <Command />
+                        <div className='edit-price-component'>
+                            <EditPrice />
+                        </div>
+                    </div>
+                }
+                {
+                    isNotifiedByMail &&
+                    <MailNotify />
+                }
+            </div>}
         </>
     );
 }

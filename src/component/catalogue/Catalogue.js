@@ -8,9 +8,11 @@ import CatalogueSkeleton from "./CatalogueSkeleton";
 
 const cataloguePhoto = () => {
     realTimeDB.ref('/Catalogue').on('value', (snapshot) => {
-        const photos = Object.values(snapshot.val());
-        // console.log('catalogue', photos);
-        localStorage.setItem('catalogue', JSON.stringify(photos));
+        if (snapshot.exists()) {
+            const photos = Object.values(snapshot.val());
+            // console.log('catalogue', photos);
+            localStorage.setItem('catalogue', JSON.stringify(photos));
+        }
     
     })
 }

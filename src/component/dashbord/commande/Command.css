@@ -1,13 +1,13 @@
 .command-div{
  display: block;
- margin-left: 500px;
+ margin-left: 0px;
 }
 .command-container{
     display: flex;
     flex-direction: row;
 }
 .commad-details-list{
-    margin-top: 30px;
+    margin-top: 70px;
     margin-left: 10px;
     max-width: 800px;
     word-wrap: break-word;

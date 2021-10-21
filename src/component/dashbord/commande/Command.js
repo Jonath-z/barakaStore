@@ -29,6 +29,7 @@ const Command = () => {
                         <>
                             <div className='command-container'>
                                 <div className='command-proof-container'>
+                                    <h1>{allCommand.length} Commandes</h1>
                                     <p>Preuve de payement</p>
                                     <a href={command.payementProof}><img src={command.payementProof} className='payement-proof-image' /></a>
                                     {
@@ -56,20 +57,20 @@ const Command = () => {
                                     </ul>
                                 </div>
                             </div>
-                            <div className='command-buttons'>
-                                <button className='command-button-reject' key={uuid()} accessKey={JSON.stringify(command)}
+                            <div className='command-buttons' key={uuid()}>
+                                <button className='command-button-reject' accessKey={JSON.stringify(command)}
                                     onClick={
                                         (e) => {
                                             e.preventDefault();
                                             console.log(JSON.parse(e.target.accessKey).clientEmail.toLowerCase());
-                                            emailjs.send(`service_dx7aqu2`, `template_eusrxdb`, {
+                                            emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                                 sujet: `Commade rejetée`,
                                                 to: `${JSON.parse(e.target.accessKey).clientEmail}`,
                                                 reply_to: `barakastore.drc@gmail.com`,
                                                 name: JSON.parse(e.target.accessKey).clientEmail.toLowerCase(),
                                                 message: `
                                                     Votre commande pour ${JSON.parse(e.target.accessKey).destinationName} a été rejeté;  merci de nous contater pour plus de details.
-                                                `}, 'user_dAVFn0qCut39ZHgNN8mf9');
+                                                `}, `${process.env.REACT_APP_EMAILJS_USER_ID}`);
                                             realTimeDB.ref('/reject-commades').child(`${JSON.parse(e.target.accessKey).id}`).set({
                                                 command
                                             })
@@ -77,18 +78,18 @@ const Command = () => {
                                         }
                                 }
                                 >Rejeter</button>
-                                <button className='command-button-validate' key={uuid()} accessKey={JSON.stringify(command)} onClick={
+                                <button className='command-button-validate' accessKey={JSON.stringify(command)} onClick={
                                     (e) => {
                                         e.preventDefault();
                                         console.log(JSON.parse(e.target.accessKey).clientEmail.toLowerCase());
-                                        emailjs.send(`service_dx7aqu2`, `template_eusrxdb`, {
+                                        emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                             sujet: `Commade validée`,
                                             to: `${JSON.parse(e.target.accessKey).clientEmail}`,
                                             reply_to:`barakastore.drc@gmail.com`,
                                             name: JSON.parse(e.target.accessKey).clientEmail.toLowerCase(),
                                             message: `
                                                 Votre commande pour ${JSON.parse(e.target.accessKey).destinationName} a été bien approuvée;  merci de nous faire confiance
-                                            `}, 'user_dAVFn0qCut39ZHgNN8mf9');
+                                            `}, `${process.env.REACT_APP_EMAILJS_USER_ID}`);
                                         realTimeDB.ref('/valid-commades').child(`${JSON.parse(e.target.accessKey).id}`).set({
                                             command
                                         })
@@ -102,7 +103,7 @@ const Command = () => {
                 })
             }
             {
-                noCommad&& <h1 style={{textAlign:"left"}}>Pas de commande disponible</h1>
+                noCommad && <h1 style={{textAlign:"left"}}>Pas de commande disponible</h1>
             }
         </div>
     );

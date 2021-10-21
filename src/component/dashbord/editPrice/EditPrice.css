@@ -1,0 +1,37 @@
+.price-container{
+    display: flex;
+    flex-direction: column;
+    /* color: ; */
+    border: 2px ridge green;
+    padding: 20px;
+    width: 24em;
+    margin-top: 10px;
+}
+.editPrice-button{
+    margin-top: 10px;
+}
+.delete{
+    background: red;
+    color: white;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 5px;
+}
+.delete:hover{
+    background: rgb(141, 8, 8);
+    border: 1px solid rgb(141, 8, 8);
+}
+.edit{
+    background: green;
+    color: white;
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 5px;
+}
+.edit:hover{
+    background: rgb(3, 78, 3); 
+}
+.submit-button-container{
+    display: flex;
+    flex-direction: column;
+}

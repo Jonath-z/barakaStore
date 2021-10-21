@@ -6,10 +6,13 @@ import { RiFacebookCircleLine } from 'react-icons/ri';
 import { IoLogoInstagram } from 'react-icons/io5';
 import { useHistory } from 'react-router-dom';
 import Resizer from 'react-image-file-resizer';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { storageDB, realTimeDB } from '../modules/firebase';
 import uuid from 'react-uuid';
 import { useCookies } from 'react-cookie';
+import MediaQuery from 'react-responsive';
+import {FiMenu} from 'react-icons/fi'
+
 
 // ///////////////////////////////// ACCEUIL ///////////////////////////////////
 export const Main = () => {
@@ -22,30 +25,35 @@ export const Main = () => {
     }
     return (
         <>
-        <div className='main'>
-            <div className='main-option-container'>
-                <ul className='option-ul'>
-                    <li className='option-li option-acceuil'>Acceuil</li>
-                    <li className='option-li option-gallerie' onClick={redirectToGallerie}>Gallerie</li>
-                    <li className='option-li option-catalogue' onClick={redirectToCatalogue}>Catalogue</li>
-                        <li className='option-li option-sousrire' onClick={() => {
-                            history.push('/Souscrire')
-                    }}>Souscrire</li>
-                </ul>
+            <div className='main'>
+                <MediaQuery minWidth={300} maxWidth={500}>
+                    <FiMenu/>
+                </MediaQuery>
+                <MediaQuery minWidth={501} maxWidth={2000}>
+                    <div className='main-option-container'>
+                        <ul className='option-ul'>
+                            <li className='option-li option-acceuil'>Acceuil</li>
+                            <li className='option-li option-gallerie' onClick={redirectToGallerie}>Gallerie</li>
+                            <li className='option-li option-catalogue' onClick={redirectToCatalogue}>Catalogue</li>
+                            <li className='option-li option-sousrire' onClick={() => {
+                                history.push('/Souscrire')
+                            }}>Souscrire</li>
+                        </ul>
+                    </div>
+                </MediaQuery>
+                <div className='main-logo-container'>
+                    <img src={logo} alt='logo' className='logo' />
+                </div>
+                <div className='main-icons-container'>
+                    <ul className='icons-ul'>
+                        <a href='mailto:barakastore.drc@gmail.com'><li className='icons-li'><IoMailOutline /></li></a>
+                        <a href='https://api.whatsapp.com/send?phone=243976721972'><li className='icons-li'><IoLogoWhatsapp /></li></a>
+                        <a href='https://www.facebook.com/barakastoredrc/'><li className='icons-li'><RiFacebookCircleLine /></li></a>
+                        <a href='https://www.instagram.com/barakastoredrc/'><li className='icons-li'><IoLogoInstagram /></li></a>
+                    </ul>
+                </div>
             </div>
-            <div className='main-logo-container'>
-                <img src={logo} alt='logo' className='logo' />
-            </div>
-            <div className='main-icons-container'>
-                <ul className='icons-ul'>
-                   <a href='mailto:barakastore.drc@gmail.com'><li className='icons-li'><IoMailOutline /></li></a>
-                   <a href='https://api.whatsapp.com/send?phone=243976721972'><li className='icons-li'><IoLogoWhatsapp /></li></a>
-                   <a href='https://www.facebook.com/barakastoredrc/'><li className='icons-li'><RiFacebookCircleLine /></li></a>
-                   <a href='https://www.instagram.com/barakastoredrc/'><li className='icons-li'><IoLogoInstagram /></li></a>
-                </ul>
-            </div>
-            </div>
-            </>
+        </>
     );
 }
 
@@ -54,16 +62,26 @@ export const Acceuil = () => {
     const [uploadedImg, setUploadedImg] = useState();
     const [clientEmail, setClientEmail] = useState('');
     const [clientPhone, setClientPhone] = useState('');
-    const [price, setPrice] = useState();
+    const [price, setPrice] = useState('');
     const [destinationEmail, setDestinationEmail] = useState('');
     const [destinationName, setDestinationName] = useState('');
     const [destinationPhone, setDestinationPhone] = useState('');
     const [commadDetails, setCommandDetails] = useState('');
     const [uploadState, setUploadState] = useState(0);
+    const [options, setOptions] = useState();
     const [cookie, setCookie] = useCookies(['clientEmail']);
     const [phoneCookie, setPhoneCookie] = useCookies(['clientPhone']);
-    let storageRef = storageDB.ref('/preuve-de-payement').child(`/preuve-de-payement_${Date.now()}`);
 
+    useEffect(() => {
+        realTimeDB.ref('/offers').on('value', (snapshot) => {
+            if (snapshot.exists()) {
+                setOptions(Object.values(snapshot.val()));
+                console.log(options);
+            }
+        })
+    },[])
+
+    let storageRef = storageDB.ref('/preuve-de-payement').child(`/preuve-de-payement_${Date.now()}`);
     const resizeFile = (file) =>
         new Promise((resolve) => {
             Resizer.imageFileResizer(
@@ -136,16 +154,16 @@ export const Acceuil = () => {
             <h3 className='welcome-h3'>Bienvenue chez BarakaStore,passez votre commande</h3>
             <div className='acceuil-client-form'>
                 <h4 className='client-title'>Client</h4>
-                <input className='client-form-mail' type='email' placeholder='Email' value={cookie.clientEmail} name='clientMail' onChange={(e) => { setClientEmail(e.target.value) }} />
-                <input type='phone' placeholder='phone' className='client-form-phone' value={phoneCookie.clientPhone}  name='clientPhone' onChange={(e) => { setClientPhone(e.target.value) }} />
+                <input className='client-form-mail' type='email' placeholder='Email' value={clientEmail} name='clientMail' onChange={(e) => { setClientEmail(e.target.value) }} />
+                <input type='phone' placeholder='phone' className='client-form-phone' value={clientPhone}  name='clientPhone' onChange={(e) => { setClientPhone(e.target.value) }} />
                 <h5 className='select-title'>Veuillez choisir le bouquet</h5>
-                <select className='main-form-select-price' onChange={(e) => { setPrice(e.target.value) }}>
+                    <select className='main-form-select-price' onChange={(e) => { setPrice(e.target.value) }}>
                     <option value=''>choisir le bouquet</option>
-                    <option value='30'>30 roses 60$</option>
-                    <option value='30'>60 roses 120$</option>
-                    <option value='30'>200 roses 230$</option>
-                    <option value='30'>600 roses 400$</option>
-                    <option value='30'>1000 roses 800$</option>
+                        {
+                            options !== undefined && options.map(({ id, price, quantity }) => {
+                               return <option value={price} key={id}>{quantity} roses {price}$</option>
+                            })
+                        }
                 </select>
             </div>
             <div className='acceuil-client-form'>

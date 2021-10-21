@@ -26,6 +26,7 @@ const MailNotify = () => {
         <>
             {!noContact && <div className='mail-notify'>
                 <div className='acceuil mail-notify-inputs'>
+                    {allMails !== undefined &&<h1>Redigez un mail à {allMails.length} souscris</h1>}
                     <input className='client-form-name' type='text' placeholder='Sujet' value={sujet} onChange={(e)=>{setSujet(e.target.value)}} />
                     <div>
                         <TextareaAutosize height={200} className='mail-notify-text-area' value={message} placeholder='Mail...' onChange={(e) => {
@@ -40,14 +41,14 @@ const MailNotify = () => {
                             if (allMails !== undefined) {
                                 allMails.map(({ client }) => {
                                     console.log(client);
-                                    emailjs.send(`service_dx7aqu2`, `template_eusrxdb`, {
+                                    emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                         sujet: `${sujet}`,
                                         to: `${client}`,
                                         reply_to: `barakastore.drc@gmail.com`,
                                         name: `${client}`,
                                         message: `
                                        ${message}
-                                    `}, 'user_dAVFn0qCut39ZHgNN8mf9');
+                                    `}, `${process.env.REACT_APP_EMAILJS_USER_ID}`);
                                 })
                                 setSujet('');
                                 setMessage('');

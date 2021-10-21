@@ -6,6 +6,7 @@ import { Main } from './component/acceuil/Acceuil';
 import Dashbord from './component/dashbord/Dashbord';
 import Catalogue from './component/catalogue/Catalogue';
 import Souscrire from './component/souscrire/Souscrire';
+import AdminLogin from './component/admin/AdminLogin';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
         <Route path='/' exact render={() => (
           <>
             <div className="App">
-              <Main />
+              <div className='app-main'>
+                <Main />
+              </div>
               <div className='option-content'>
                 <Acceuil />
               </div>
@@ -23,6 +26,7 @@ function App() {
         )} />
         <Route path='/Gallerie' component={Gallerie} />
         <Route path='/Dashbord' component={Dashbord} />
+        <Route path='/Admin' component={AdminLogin}/>
         <Route path='/Catalogue' component={Catalogue} />
         <Route path='/Souscrire' component={Souscrire}/>
       </>

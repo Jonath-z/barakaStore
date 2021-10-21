@@ -1,0 +1,13 @@
+.command-component{
+    position: absolute;
+    left: 500px;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+
+}
+.edit-price-component{
+    position: absolute;
+    right: 50px;
+    margin-top: 20px;
+}

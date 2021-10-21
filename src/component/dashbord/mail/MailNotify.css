@@ -1,9 +1,9 @@
 .mail-notify-inputs{
-    padding-top: 50px;
+    padding-top: 40px;
 }
 .mail-notify-text-area{
     width: 1000px !important;
-    margin-top: 60px;
+    margin-top: 40px;
     outline: none;
     max-height: 600px;
     min-height: 100px;

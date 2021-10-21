@@ -4,6 +4,7 @@
     color: white;
     left: 0;
     height: 100%;
+    box-shadow: 1px 1px 20px #008000;
 }
 .content-list{
     margin-top: 50px;
