@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/sawasdee');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 .acceuil{
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
 }
 
 .welcome-h3{
-    font-family: sawasdee;
+    font-family: 'Quicksand', sans-serif;
     color: #008000;
 }
 .acceuil-client-form{
@@ -123,12 +123,12 @@ input[type=file]::file-selector-button:hover{
 }
 
 .client-title{
-    font-family: sawasdee;
+    font-family: 'Quicksand', sans-serif;
     color: #008000;
     font-size: 20px;
 }
 .select-title{
-    font-family: sawasdee;
+    font-family: 'Quicksand', sans-serif;
     color: #008000;
     font-size: 15px;
 }
@@ -149,7 +149,7 @@ input[type=file]::file-selector-button:hover{
 
 
 /* /////////////////// MAIN CLASS ///////////////////////////// */
-@import url('http://fonts.cdnfonts.com/css/sawasdee');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 .App{
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -188,7 +188,7 @@ input[type=file]::file-selector-button:hover{
     list-style: none;
     margin-left: 50px;
     font-size: 30px;
-    font-family: 'sawasdee' ;
+    font-family: 'Quicksand';
     color: #008000;
     cursor: pointer;
 }
@@ -254,17 +254,35 @@ input[type=file]::file-selector-button:hover{
     transition: 400ms;
 }
 
-
-@media(max-width: 500px){
-   .logo{ 
-    max-width: 400px;
-    min-width: 300px;
+/* ************************************* MEDIA QUERIES ***************************************8 */
+@media(max-width:500px){
+    .acceuil{
+        padding-bottom: 50px;
+    }
+   /* .logo{ 
+    width: 370px;
     text-align: center;
     justify-content: unset;
     align-items: unset;
     /* text-align: center; */
-    display: unset;
-    margin-top: unset;
+    /* display: unset;
+    margin-top: unset; */
+   /* } */
+ .welcome-h3{
+    text-align: center;
+    padding: 0px 5px 0px 5px;
+}
+.client-form-mail,.client-form-phone,.client-form-name{
+    width: 25em;
+    height: 3em;
+}
+.client-payement-proof{
+    width: 25em;
+    height: 2em;
+}
+.main-form-select-price{
+    width: 26em;
+    height: 3em;
 }
 .App{
     display: block;
@@ -281,17 +299,44 @@ margin: auto;
     position: unset;
     height: unset;
 }
+.main-option-container{
+    width: unset;
+    animation: fromTop 500ms ease-in;
+}
+.option-ul{
+    justify-content: unset;
+    text-align: unset;
+    margin-left: unset;
+    display: inline-table;
+    text-align: center;
+    margin-left: unset;
+    padding: 0;
+}
+.option-li{
+    list-style: none;
+    margin-left: 20px;
+    font-size: 18px;
+    font-family: 'Quicksand';
+    color: #008000;
+    cursor: pointer;
+    display: inline;
+}
+.option-li:hover{
+    transform: scale(1.2,1.2);
+    transition: 300ms;
+}
+
 .main-logo-container {
     width: 100%;
     vertical-align: middle;
-    margin-top: 20vh;
+    margin-top: 16vh;
 }
 .main-icons-container{width: 100%;
 animation: fromBottom 500ms ease-in;
 display: block;
 margin-top: 30vh;
 justify-content: center;
-transition: \);
+
 }
 .icons-ul{
     /* margin-left: 80px; */
@@ -302,6 +347,7 @@ transition: \);
 }
 .icons-li{
     margin-left: 50px;
+    padding-right: 10px;
 }
 .option-content{
     display: block;
@@ -310,5 +356,155 @@ transition: \);
     right: unset;
     position: unset;
 }
-
+}
+@media screen and (min-width:300px) and (max-width:365px){
+    .logo{
+        width: 300px;
+    }
+    .option-li{
+        list-style: none;
+        margin-left: 10px;
+        font-size: 18px;
+        font-family: 'sawasdee';
+        color: #008000;
+        cursor: pointer;
+        display: inline;
+    }
+    .icons-li {
+        margin-left: 40px;
+        padding-right: 10px;
+    }
+    .welcome-h3{
+        text-align: center;
+        padding: 0px 5px 0px 5px;
+    }
+}
+@media screen and (min-width:360px) and (max-width:399px){
+    .logo{
+        width: 370px;
+    }
+    .welcome-h3{
+        text-align: center;
+        padding: 0px 5px 0px 5px;
+    }
+}
+@media screen and (width:320px) and (height:568px){
+    .client-form-mail,.client-form-phone,.client-form-name{
+        width: 20em;
+        height: 3em;
+        margin-left: 20px;
+    }
+    .client-payement-proof{
+        width: 20em;
+        height: 2em;
+        margin-left: 20px;
+    }
+    .main-form-select-price{
+        width: 21em;
+        height: 3em;
+        margin-left: 20px;
+    }
+}
+@media screen and (min-width:400px) and (max-width:500px){
+    .logo{
+        width: 400px;
+    }
+    .main-option-container{
+        margin-left: 20px;
+        width: unset;
+        animation: fromTop 500ms ease-in;
+    }
+    .welcome-h3{
+        text-align: center;
+        padding: 0px 5px 0px 5px;
+    }
+}
+@media screen and (min-width:768px) and (max-width:1024px){
+    .main{
+        width: unset;
+    }
+    .logo {
+        width: 768px;
+    }
+    .App{
+        display: block
+    }
+    .app-main{
+        box-sizing: border-box;
+        display: block;
+        min-height: 100vh;
+        margin: auto;
+    }
+    .welcome-h3{
+        text-align: center;
+        padding: 0px 5px 0px 5px;
+    }
+    .client-form-mail,.client-form-phone,.client-form-name{
+        width: 30em;
+        height: 3em;
+    }
+    .client-payement-proof{
+        width: 30em;
+        height: 2em;
+    }
+    .main-form-select-price{
+        width: 31em;
+        height: 3em;
+    }
+    .main-logo-container {
+        width: 100%;
+    }
+    .main-option-container {
+        width: 100%;
+        animation: fromTop 500ms ease-in;
+    }
+    .option-content {
+        width: 100%;
+        position: absolute;
+        height: 100vh;
+        right: 0;
+        left: 0px;
+    }
+    .option-ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        text-align: center;
+        margin-left: 0px;
+        padding: 0;
+    }
+    .option-li {
+        list-style: none;
+        margin-left: 0px;
+        font-size: 30px;
+        font-family: 'sawasdee';
+        color: #008000;
+        cursor: pointer;
+    }
+    .main-icons-container {
+        width: 0;
+        animation: fromBottom 500ms ease-in;
+        margin-top: 100px;
+    }
+    .icons-ul {
+        margin-left: 300px;
+    }
+}
+@media screen and (width:1024px){
+    .main{
+        width: 1024px;
+    }
+    .logo {
+        width: 1000px;
+    }
+    .acceuil {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 200px;
+    }
+    .icons-ul {
+        margin-left: 410px;
+    }
 }
