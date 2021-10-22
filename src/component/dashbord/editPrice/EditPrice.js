@@ -40,7 +40,7 @@ const EditPrice = () => {
         })
         if (sucribers !== undefined) {
             sucribers.map(({ client }) => {
-                emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
+               return emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                     sujet: 'Nouvelle Offre',
                     to: `${client}`,
                     reply_to: `barakastore.drc@gmail.com`,
@@ -55,11 +55,7 @@ const EditPrice = () => {
         setNewQuantity('')
         setOfferAnnoucement('');
     }
-    const deleteOffer = (e) => {
-        const offerID = e.target.accessKey
-        realTimeDB.ref('/offers').child(offerID).remove();
-        alert('offre supprimée');
-    }
+
     return (
         <div className='edit-price'>
             <h1>Offres</h1>
@@ -68,7 +64,10 @@ const EditPrice = () => {
                     return (
                         <div className='price-container' key={id}>
                             <p>{quantity} roses pour {price}$ </p>
-                            <button accessKey={id} onClick={deleteOffer} className='editPrice-button delete'>Supprimer l'offre</button>
+                            <button onClick={(e) => {
+                                realTimeDB.ref('/offers').child(id).remove();
+                                alert('offre supprimée');
+                            }} className='editPrice-button delete'>Supprimer l'offre</button>
                         </div>
                     )
                 })

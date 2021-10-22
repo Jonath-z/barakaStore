@@ -23,9 +23,6 @@ const EditGallery = () => {
                 if (photos.length > 1) {
                     setPreventEmptyGallery(false);
                 }
-                photos.map(photo => {
-                    photo.key = `${snapshot.key}`
-                })
                 setGalleryPhotos(photos);
                 // console.log(photos);
             }
@@ -91,9 +88,9 @@ const EditGallery = () => {
                     galleryPhotos !== undefined && galleryPhotos.reverse().map(({ id, image }) => {
                         return (
                             <div key={id} className='editGallery-photo-container'>
-                                <img src={image} alt='gallery-photo' className='editGallery-photos' />
+                                <img src={image} alt='gallery' className='editGallery-photos' />
                                 {!preventEmptyGallery && <div className='button-container'>
-                                    <button className='delete-button' accessKey={id} onClick={(e) => {
+                                    <button className='delete-button'  onClick={(e) => {
                                         console.log(e.target.parentNode.parentNode.children[0].src);
                                         storageDB.refFromURL(e.target.parentNode.parentNode.children[0].src); // delete photo in firestore
                                         realTimeDB.ref('/Gallerie').child(`${id}`).remove(); // delete photo in realTime bata base

@@ -19,9 +19,6 @@ const EditCatalogue = () => {
                 if (photos.length > 1) {
                     setPreventEmptyCatalogue(false);
                 }
-                photos.map(photo => {
-                    photo.key = `${snapshot.key}`
-                })
                 setAllCatalogue(photos);
                 // console.log(photos);
             }
@@ -68,7 +65,7 @@ const EditCatalogue = () => {
                             <div key={id} className='editCatalogue-photoContainer' >
                                 <img className='editCatalogue-catalogue-photo' src={image} alt='catalogue' />
                                 {!preventEmptyCatalogue && <div className='editCatalogue-deleteButton'>
-                                    <button className='delete-button' accessKey={id} onClick={(e) => {
+                                    <button className='delete-button' onClick={(e) => {
                                         storageDB.refFromURL(e.target.parentNode.parentNode.children[0].src); // delete photo in firestore
                                         realTimeDB.ref('/Catalogue').child(`${id}`).remove(); // delete photo in realTime bata base
                                     }}>SUPRIMER LE CATALOGUE</button>

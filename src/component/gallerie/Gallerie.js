@@ -51,8 +51,8 @@ const themeMemory = [];
                             <div className='gallery-photo-container' key={uuid()}>
                                 {
                                     galleryPhotos !== undefined && galleryPhotos.reverse().map(({ theme, image }) => {
-                                        if (theme === memoryTheme) {
-                                            return (
+                                        return (
+                                        theme === memoryTheme &&
                                                 <div className='image-global-div' onClick={openForm}>
                                                     <img alt={theme} src={image} key={uuid()} className='gallery-photo' />
                                                     <div className='image-details-container'>
@@ -60,8 +60,7 @@ const themeMemory = [];
                                                         <p className='image-details'>Commadez comme model</p>
                                                     </div>
                                                 </div>
-                                            )
-                                        }
+                                        )
                                     })
                                 }
                                 {galleryPhotos === undefined && <div className='image-global-div'>

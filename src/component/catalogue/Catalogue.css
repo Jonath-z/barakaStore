@@ -10,3 +10,10 @@
     margin-top: 10px;
     box-shadow: 1px 1px 100px #d8d8d8;
 }
+/* ****************** MEDIA QUERIES ********************/
+
+@media(max-width: 500px){
+    .catalogueImg{
+    width: 300px;
+}
+}

@@ -7,6 +7,7 @@ import Dashbord from './component/dashbord/Dashbord';
 import Catalogue from './component/catalogue/Catalogue';
 import Souscrire from './component/souscrire/Souscrire';
 import AdminLogin from './component/admin/AdminLogin';
+import Oldcommand from './component/dashbord/commande/OldCommand';
 
 function App() {
   return (
@@ -27,8 +28,9 @@ function App() {
         <Route path='/Gallerie' component={Gallerie} />
         <Route path='/Dashbord' component={Dashbord} />
         <Route path='/Admin' component={AdminLogin}/>
-        <Route path='/Catalogue' component={Catalogue} />
-        <Route path='/Souscrire' component={Souscrire}/>
+        <Route path='/Catalogue' component={Catalogue}/>
+        <Route path='/Souscrire' component={Souscrire} />
+        <Route path='/Anciennes-commandes' component={Oldcommand}/>
       </>
     </Router>
   );

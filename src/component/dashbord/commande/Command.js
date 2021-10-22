@@ -7,8 +7,9 @@ import emailjs from 'emailjs-com';
 const Command = () => {
     const [allCommand, setAllCommand] = useState();
     const [noCommad, setNoCommd] = useState(true);
+    const [valitedCommand, setValitedCommand] = useState();
+    const [rejectedCommand, setRejectedCommand] = useState();
     useEffect(() => {
-        
         realTimeDB.ref('/commades').on('value', (snapshot) => {
             if (snapshot.exists()) {
                 const commads = Object.values(snapshot.val());
@@ -19,24 +20,38 @@ const Command = () => {
                 setNoCommd(true);
             }
         });
+        realTimeDB.ref('/valid-commades').on('value', (snapshot) => {
+            if (snapshot.exists()) {
+                const validCommads = Object.values(snapshot.val());
+                setValitedCommand(validCommads);
+            }
+        });
+        realTimeDB.ref('/reject-commades').on('value', (snapshot) => {
+            if (snapshot.exists()) {
+                const rejectCommads = Object.values(snapshot.val());
+                setRejectedCommand(rejectCommads);
+            }
+        });
     }, []);
     
     return (
         <div className='command-div'>
             {
-              !noCommad &&  allCommand !== undefined && allCommand.reverse().map(command => {
+                !noCommad && allCommand !== undefined && allCommand.reverse().map(command => {
                     return (
                         <>
+                            {valitedCommand !== undefined && <a href='../Anciennes-commandes'><h4>{valitedCommand.length} Commande(s) validée(s)</h4></a>}
+                            {rejectedCommand !== undefined && <a href='../Anciennes-commandes'><h4>{rejectedCommand.length} Commande(s) rejetée(s)</h4></a>}
                             <div className='command-container'>
                                 <div className='command-proof-container'>
-                                    <h1>{allCommand.length} Commandes</h1>
+                                    <h1>{allCommand.length} Nouvelle commandes</h1>
                                     <p>Preuve de payement</p>
-                                    <a href={command.payementProof}><img src={command.payementProof} className='payement-proof-image' /></a>
+                                    <a href={command.payementProof}><img src={command.payementProof} className='payement-proof-image' alt='command' style={{width:'300px'}} /></a>
                                     {
                                         command.model !== '' && command.model &&
                                         <div>
                                             <p>model</p>
-                                            <a href={command.model}><img src={command.model} className='model-image' /></a>
+                                            <a href={command.model}><img src={command.model} className='model' alt='model' style={{width:'300px'}} /></a>
                                         </div>
                                     }
                                 </div>
@@ -58,42 +73,42 @@ const Command = () => {
                                 </div>
                             </div>
                             <div className='command-buttons' key={uuid()}>
-                                <button className='command-button-reject' accessKey={JSON.stringify(command)}
+                                <button className='command-button-reject'
                                     onClick={
                                         (e) => {
                                             e.preventDefault();
-                                            console.log(JSON.parse(e.target.accessKey).clientEmail.toLowerCase());
+                                            console.log(command.clientEmail.toLowerCase());
                                             emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                                 sujet: `Commade rejetée`,
-                                                to: `${JSON.parse(e.target.accessKey).clientEmail}`,
+                                                to: `${command.clientEmail}`,
                                                 reply_to: `barakastore.drc@gmail.com`,
-                                                name: JSON.parse(e.target.accessKey).clientEmail.toLowerCase(),
+                                                name: command.clientEmail.toLowerCase(),
                                                 message: `
-                                                    Votre commande pour ${JSON.parse(e.target.accessKey).destinationName} a été rejeté;  merci de nous contater pour plus de details.
+                                                    Votre commande pour ${command.destinationName} a été rejeté;  merci de nous contater pour plus de details.
                                                 `}, `${process.env.REACT_APP_EMAILJS_USER_ID}`);
-                                            realTimeDB.ref('/reject-commades').child(`${JSON.parse(e.target.accessKey).id}`).set({
+                                            realTimeDB.ref('/reject-commades').child(`${command.id}`).set({
                                                 command
                                             })
-                                            realTimeDB.ref('/commades').child(JSON.parse(e.target.accessKey).id).remove();
+                                            realTimeDB.ref('/commades').child(command.id).remove();
                                         }
-                                }
+                                    }
                                 >Rejeter</button>
-                                <button className='command-button-validate' accessKey={JSON.stringify(command)} onClick={
+                                <button className='command-button-validate' onClick={
                                     (e) => {
                                         e.preventDefault();
-                                        console.log(JSON.parse(e.target.accessKey).clientEmail.toLowerCase());
+                                        console.log(command.clientEmail.toLowerCase());
                                         emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                             sujet: `Commade validée`,
-                                            to: `${JSON.parse(e.target.accessKey).clientEmail}`,
-                                            reply_to:`barakastore.drc@gmail.com`,
+                                            to: `${command.clientEmail}`,
+                                            reply_to: `barakastore.drc@gmail.com`,
                                             name: JSON.parse(e.target.accessKey).clientEmail.toLowerCase(),
                                             message: `
-                                                Votre commande pour ${JSON.parse(e.target.accessKey).destinationName} a été bien approuvée;  merci de nous faire confiance
+                                                Votre commande pour ${command.destinationName} a été bien approuvée;  merci de nous faire confiance
                                             `}, `${process.env.REACT_APP_EMAILJS_USER_ID}`);
-                                        realTimeDB.ref('/valid-commades').child(`${JSON.parse(e.target.accessKey).id}`).set({
+                                        realTimeDB.ref('/valid-commades').child(`${command.id}`).set({
                                             command
                                         })
-                                        realTimeDB.ref('/commades').child(JSON.parse(e.target.accessKey).id).remove();
+                                        realTimeDB.ref('/commades').child(command.id).remove();
                                     }
                                         
                                 }>Valider</button>
@@ -103,7 +118,7 @@ const Command = () => {
                 })
             }
             {
-                noCommad && <h1 style={{textAlign:"left"}}>Pas de commande disponible</h1>
+                noCommad && <h1 style={{ textAlign: "left" }}>Pas de commande disponible</h1>
             }
         </div>
     );

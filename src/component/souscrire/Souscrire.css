@@ -1,11 +1,16 @@
-@import url('http://fonts.cdnfonts.com/css/sawasdee');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 .souscire-content{
     margin-top: 100px;
     text-align: center;
 }
 .souscrire-success{
-    font-family: sawasdee;
+    font-family: 'Quicksand', sans-serif;
     color: #008000;
     /* color: #00800063; */
 
+}
+@media(max-width:500px){
+    .submit-button-container{
+        text-align: center !important;
+    }
 }

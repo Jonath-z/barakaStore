@@ -25,14 +25,14 @@ const Souscrire = () => {
                         client: `${clientEmail}`,
                         id: `${uuid()}`
                     });
-                    setDisplayThanksMessage(true);
+                  return  setDisplayThanksMessage(true);
                 }
                 else {
                     const confirmation = window.confirm('Vous avez déjà souscri à barakaStore,passez plutôt une commande');
                     if (confirmation) {
-                        history.push('/');
+                      return  history.push('/');
                     } else {
-                        history.push('/');
+                       return history.push('/');
                     }
                 }
             })

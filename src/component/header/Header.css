@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/sawasdee');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
 
 .Header{
@@ -24,7 +24,7 @@
     color: white;
 }
 .startup-slogant{
-    font-family: sawasdee;
+    font-family: 'Quicksand', sans-serif;
     font-size: 12px;
     margin-left: 20px;
     margin-top: -10px;
@@ -46,4 +46,117 @@
     transition: 300ms;
 }
 
+/* ****************** MEDIA QUERIES ********************/
 
+@media(max-width: 500px){
+    .header-startup-name-container{
+        margin-left: unset;
+        float: left;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+    .startup-name{
+        font-family: 'Italianno';
+        font-size: 40px;
+        margin-top: -5px;
+        margin-bottom: -20px;
+        cursor: pointer;
+    }
+    .startup-slogant{
+        font-family: 'Quicksand', sans-serif;
+        font-size: 10px;
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+    .menu-icon-container{
+        position: absolute;
+        right: 20px;
+        left: unset;
+        top: 0px;
+    }
+    .menu-icon{
+        font-size: 30px;
+        color: white;
+        font-family: 'Quicksand', sans-serif;
+        cursor: pointer;
+    }
+    .header-option-container-reponsive{
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background: #008000;
+        z-index: 1;
+        animation: openMenu 500ms ease;
+    }
+    @keyframes openMenu {
+        0%{
+            height: 0vh;
+            opacity: 0;
+        }
+        10%{
+            height: 10vh;
+            opacity: 0.1;
+        }
+        20%{
+            height: 20vh;
+            opacity: 0.2;
+        }
+        40%{
+            height: 40vh;
+            opacity: 0.4;
+        }
+        60%{
+            height: 60vh;
+            opacity: 0.6;
+        }
+        80%{
+            height: 80vh;
+            opacity: 0.8;
+        }
+        100%{
+            height: 100vh;
+            opacity: 1;
+        }
+
+    }
+    .header-ul-reponsive{
+    margin-top: 70px;
+    text-align: center;
+    padding-left: 0px;
+    margin-left: 0px;
+    }
+    .option-li-responsive{
+        color: white;
+        font-size: 30px;
+        font-family: 'Quicksand', sans-serif;
+        margin-top: 20px;
+        list-style: none;
+    }
+    .close-menu-icon{
+        position: absolute;
+        right: 20px;
+        left: unset;
+        top: 20px;
+        color: white;
+        font-size: 30px;
+        z-index: 2;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1024px){
+    .header-startup-name-container {
+        margin-left: 20px;
+    }
+    .header-option-container {
+        position: absolute;
+        right: 0;
+    }
+    .option-li {
+        list-style: none;
+        margin-left: 0px;
+        font-size: 26px;
+        font-family: 'sawasdee';
+        cursor: pointer;
+    }
+}
