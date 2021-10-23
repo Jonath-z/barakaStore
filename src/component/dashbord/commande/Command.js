@@ -61,13 +61,14 @@ const Command = () => {
                                         <li className='command-details-li'>Phone: {command.clientPhone}</li>
                                         <li className='command-details-li'>Email: {command.clientEmail}</li>
                                         <li className='command-details-li'>Prix: {command.price} $</li>
-                                        <li className='command-details-li'>Date: {command.date}</li>
+                                        <li className='command-details-li'>Date de la command: {command.date}</li>
+                                        <li className='command-details-li'>Date de livraison: {command.livraryDate}</li>
                                     </ul>
                                     <h4 className='commd-details-h4'>Recepteur</h4>
                                     <ul className='commad-details-ul'>
                                         <li className='command-details-li'>Nom: {command.destinationName}</li>
                                         <li className='command-details-li'>Phone: {command.destinationPhone}</li>
-                                        <li className='command-details-li'>Email: {command.destinationEmail}</li>
+                                        {command.destinationEmail &&<li className='command-details-li'>Email: {command.destinationEmail}</li>}
                                         <li className='command-details-li'>Details: <b>{command.commadDetails}</b></li>
                                     </ul>
                                 </div>

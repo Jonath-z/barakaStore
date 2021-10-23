@@ -36,12 +36,13 @@ const Oldcommand = () => {
                                         <li className='command-details-li'>Email: {command.command.clientEmail}</li>
                                         <li className='command-details-li'>Prix: {command.command.price} $</li>
                                         <li className='command-details-li'>Date: {command.command.date}</li>
+                                        <li className='command-details-li'>Date de livraison: {command.command.livraryDate}</li>
                                     </ul>
                                     <h4 className='commd-details-h4'>Recepteur</h4>
                                     <ul className='commad-details-ul'>
                                         <li className='command-details-li'>Nom: {command.command.destinationName}</li>
                                         <li className='command-details-li'>Phone: {command.command.destinationPhone}</li>
-                                        <li className='command-details-li'>Email: {command.command.destinationEmail}</li>
+                                        {command.command.destinationEmail &&<li className='command-details-li'>Email: {command.command.destinationEmail}</li>}
                                         <li className='command-details-li'>Details: <b>{command.command.commadDetails}</b></li>
                                     </ul>
                                 </div>
@@ -74,12 +75,13 @@ const Oldcommand = () => {
                                         <li className='command-details-li'>Email: {command.command.clientEmail}</li>
                                         <li className='command-details-li'>Prix: {command.command.price} $</li>
                                         <li className='command-details-li'>Date: {command.command.date}</li>
+                                        <li className='command-details-li'>Date de livraison: {command.command.livraryDate}</li>
                                     </ul>
                                     <h4 className='commd-details-h4'>Recepteur</h4>
                                     <ul className='commad-details-ul'>
                                         <li className='command-details-li'>Nom: {command.command.destinationName}</li>
                                         <li className='command-details-li'>Phone: {command.command.destinationPhone}</li>
-                                        <li className='command-details-li'>Email: {command.command.destinationEmail}</li>
+                                        {command.command.destinationEmail &&<li className='command-details-li'>Email: {command.command.destinationEmail}</li>}
                                         <li className='command-details-li'>Details: <b>{command.command.commadDetails}</b></li>
                                     </ul>
                                 </div>
