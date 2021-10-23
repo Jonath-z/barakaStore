@@ -34,7 +34,7 @@
     border: none;
     height: 1.5em;
     border-radius: 2px;
-    
+    /* margin-left: 500px; */
 }
 .delete-button:hover{
     transform: scale(1.2,1.2);
