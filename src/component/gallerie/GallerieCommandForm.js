@@ -8,6 +8,7 @@ import 'react-phone-number-input/style.css';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import TextareaAutosize from "react-textarea-autosize";
+import emailjs from 'emailjs-com';
 
 const GallerieCommandForm = (props) => {
     const [uploadedImg, setUploadedImg] = useState('');
