@@ -1,14 +1,16 @@
-
 import '../acceuil/Acceuil.css';
-import Resizer from 'react-image-file-resizer';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { storageDB, realTimeDB } from '../modules/firebase';
 import uuid from 'react-uuid';
-import { useCookies } from 'react-cookie';
 import { MdCancel } from 'react-icons/md';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import Datetime from 'react-datetime';
+import "react-datetime/css/react-datetime.css";
+import TextareaAutosize from "react-textarea-autosize";
 
 const GallerieCommandForm = (props) => {
-    const [uploadedImg, setUploadedImg] = useState();
+    const [uploadedImg, setUploadedImg] = useState('');
     const [clientEmail, setClientEmail] = useState('');
     const [clientPhone, setClientPhone] = useState('');
     const [price, setPrice] = useState();
@@ -17,38 +19,31 @@ const GallerieCommandForm = (props) => {
     const [destinationPhone, setDestinationPhone] = useState('');
     const [commadDetails, setCommandDetails] = useState('');
     const [uploadState, setUploadState] = useState(0);
-    const [cookie, setCookie] = useCookies(['clientEmail']);
-    const [phoneCookie, setPhoneCookie] = useCookies(['clientPhone']);
-    let storageRef = storageDB.ref('/preuve-de-payement').child(`/preuve-de-payement_${Date.now()}`);
+    const [options, setOptions] = useState();
+    const [date, setDate] = useState(new Date());
 
-    const resizeFile = (file) =>
-        new Promise((resolve) => {
-            Resizer.imageFileResizer(
-                file,
-                300,
-                300,
-                "JPEG",
-                100,
-                0,
-                (uri) => {
-                    resolve(uri);
-                },
-                "file"
-            );
-        });
+    useEffect(() => {
+        realTimeDB.ref('/offers').on('value', (snapshot) => {
+            if (snapshot.exists()) {
+                const offers = Object.values(snapshot.val())
+                setOptions(offers);
+                // console.log(options);
+            }
+        })
+    }, [])
+    
+    let storageRef = storageDB.ref('/preuve-de-payement').child(`/preuve-de-payement_${Date.now()}`);
     
     const uploadProof = async (e) => {
         try {
             const file = e.target.files[0];
-            const image = await resizeFile(file);
-            storageRef.put(image).then((snapshot) => {
+            storageRef.put(file).then((snapshot) => {
                 setUploadState((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 snapshot.ref.getDownloadURL().then(url => {
                     console.log(url);
                     setUploadedImg(url);
                 })
             })
-            console.log(image);
           } catch (err) {
             console.log(err);
           }
@@ -68,13 +63,9 @@ const GallerieCommandForm = (props) => {
             commadDetails:`${commadDetails}`,
             payementProof: `${uploadedImg}`,
             model:`${props.model}`,
-            date: `${today.toLocaleString()}`
+            date: `${today.toLocaleString()}`,
+            livraryDate:`${date}`
         });
-        const expire = new Date();
-        expire.setTime(today.getTime() + (30 * 60 * 60 * 1000));
-        setCookie('clientEmail', clientEmail, { path: '/', expires: new Date(Date.now()+2592000)});
-        setPhoneCookie('clientPhone', clientPhone, { path: '/', expires: new Date(Date.now()+2592000) });
-
         setClientEmail('');
         setClientPhone('');
         setPrice('');
@@ -95,36 +86,38 @@ const GallerieCommandForm = (props) => {
             <div className='acceuil'>
                 <h3 className='welcome-h3'>Passez votre commande</h3>
                 <MdCancel className='cancel-icon' onClick={props.closeCommande}/>
-            <div className='acceuil-client-form'>
-                <h4 className='client-title'>Client</h4>
-                <input className='client-form-mail' type='email' placeholder='Email' value={cookie.clientEmail} name='clientMail' onChange={(e) => { setClientEmail(e.target.value) }} />
-                <input type='phone' placeholder='phone' className='client-form-phone' value={phoneCookie.clientPhone}  name='clientPhone' onChange={(e) => { setClientPhone(e.target.value) }} />
-                <h5 className='select-title'>Veuillez choisir le bouquet</h5>
-                <select className='main-form-select-price' onChange={(e) => { setPrice(e.target.value) }}>
-                    <option value=''>choisir le bouquet</option>
-                    <option value='30'>30 roses 60$</option>
-                    <option value='30'>60 roses 120$</option>
-                    <option value='30'>200 roses 230$</option>
-                    <option value='30'>600 roses 400$</option>
-                    <option value='30'>1000 roses 800$</option>
-                </select>
-            </div>
-            <div className='acceuil-client-form'>
-                <h4 className='client-title'>Destination</h4>
-                {/* <img src={uploadedImg} alt='uploaded'/> */}
-                <input className='client-form-mail' type='email' placeholder='Email (optionel)' value={destinationEmail}  name='destinationMail' onChange={(e) => { setDestinationEmail(e.target.value) }} />
-                <input className='client-form-name' type='text' placeholder='Name' value={destinationName} name='destinationName' onChange={(e) => { setDestinationName(e.target.value) }} />
-                <input type='phone' placeholder='phone' className='client-form-phone' value={destinationPhone} name='destinationPhone' onChange={(e) => { setDestinationPhone(e.target.value) }} />
-                <textarea placeholder='Details' className='client-text-textarea' value={commadDetails} name='commandDetails' onChange={(e) => { setCommandDetails(e.target.value) }} />
-                <h5 className='select-title'>Preuve de paiyement     (<span>chargement: {uploadState}%</span>)</h5>
-                <input type='file' name='payementProof' className='client-payement-proof' onChange={uploadProof} />
-            </div>
-            <div className='submit-button-container'>
-                {
-                    uploadState === 100 && clientPhone.length >=10 && clientEmail !=='' && destinationPhone.length>=10 && commadDetails !== '' && price !==''&& destinationEmail !== ''&& <button className='submit-button' onClick={sendCommand}>ENVOYEZ</button>
+                <div className='acceuil-client-form'>
+                    <h4 className='client-title'>Client</h4>
+                    <input className='client-form-mail' type='email' placeholder='Email' value={clientEmail} name='clientMail' onChange={(e) => { setClientEmail(e.target.value) }} />
+                    <PhoneInput international countryCallingCodeEditable={false} defaultCountry='CD' placeholder='phone' className='client-form-phone' value={clientPhone} name='clientPhone' onChange={setClientPhone} />
+                    <h5 className='select-title'>Veuillez choisir le bouquet</h5>
+                    <select className='main-form-select-price' onChange={(e) => { setPrice(e.target.value) }}>
+                        <option value=''>choisir le bouquet</option>
+                        {
+                            options !== undefined && options.map(({ id, price, quantity }) => {
+                                return <option value={price} key={id}>{quantity} roses {price}$</option>
+                            })
+                        }
+                    </select>
+                    <h5 className='select-title'>Date et heure de livraison (48H minimum)</h5>
+                    <Datetime dateFormat={true} value={date} className='client-form-mail date-input' placeholder='Date' onChange={setDate} />
+                </div>
+                <div className='acceuil-client-form'>
+                    <h4 className='client-title'>Destination</h4>
+                    {/* <img src={uploadedImg} alt='uploaded'/> */}
+                    <input className='client-form-mail' type='email' placeholder='Email (optionel)' value={destinationEmail} name='destinationMail' onChange={(e) => { setDestinationEmail(e.target.value) }} />
+                    <input className='client-form-name' type='text' placeholder='Nom' value={destinationName} name='destinationName' onChange={(e) => { setDestinationName(e.target.value) }} />
+                    <PhoneInput international countryCallingCodeEditable={false} defaultCountry='CD' placeholder='phone' className='client-form-phone' value={destinationPhone} name='destinationPhone' onChange={setDestinationPhone} />
+                    <TextareaAutosize placeholder='Couleur de roses,Adresse du destinateur et autre préférences' className='client-text-textarea' value={commadDetails} name='commandDetails' onChange={(e) => { setCommandDetails(e.target.value) }} />
+                    <h5 className='select-title'>Preuve de paiyement     (<span>chargement: {uploadState}%</span>)</h5>
+                    <input type='file' name='payementProof' className='client-payement-proof' onChange={uploadProof} />
+                </div>
+                <div className='submit-button-container'>
+                    {
+                        uploadState === 100 && uploadedImg !== '' && clientPhone.length >= 10 && clientEmail !== '' && destinationPhone.length >= 10 && commadDetails !== '' && price !== '' && <button className='submit-button' onClick={sendCommand}>ENVOYEZ</button>
                 
-                }
-            </div>
+                    }
+                </div>
         </div>
         </div>
     )
