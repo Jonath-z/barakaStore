@@ -66,6 +66,30 @@ const GallerieCommandForm = (props) => {
             date: `${today.toLocaleString()}`,
             livraryDate:`${date}`
         });
+        // ************************** SEND EMAIL TO ADMIN *****************************************//
+        emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `template_ux9bik9`, {
+            to: `barakastore.drc@gmail.com`,
+            reply_to: `barakastore.drc@gmail.com`,
+            client_email: `${clientEmail}`,
+            client_phone: `${clientPhone}`,
+            price: `${price}`,
+            delivrary_date: `${date}`,
+            date: `${today.toLocaleString()}`,
+            destination_name: `${destinationName}`,
+            destination_phone: `${destinationPhone}`,
+            command_details: `${commadDetails}`,
+            payement_proof:`${uploadedImg}`
+        }, `${process.env.REACT_APP_EMAILJS_USER_ID}`);
+// ************************** SEND EMAIL TO CLIENT *****************************************//
+        emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
+            sujet: `Réception de la commande`,
+            to: `${clientEmail}`,
+            name: `${clientEmail.replace('@gmail.com','')}`,
+            reply_to: `barakastore.drc@gmail.com`,
+            message: `
+                Votre commande a été envoyée avec succès, nous reviendrons vers vous dans peu.
+            `
+        }, `${process.env.REACT_APP_EMAILJS_USER_ID}`);
         setClientEmail('');
         setClientPhone('');
         setPrice('');
