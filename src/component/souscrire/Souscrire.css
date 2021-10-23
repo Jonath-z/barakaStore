@@ -9,6 +9,11 @@
     /* color: #00800063; */
 
 }
+.souscrire-button{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
 @media(max-width:500px){
     .submit-button-container{
         text-align: center !important;

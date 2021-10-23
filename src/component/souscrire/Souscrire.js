@@ -55,7 +55,7 @@ const Souscrire = () => {
                 </div>}
                 { !displayThanksMessage &&<div className='submit-button-container'>
                     {
-                        clientEmail !== '' && <button className='submit-button' onClick={souscrire}>SOUSCRIRE</button>
+                        clientEmail !== '' && <button className='submit-button souscrire-button' onClick={souscrire}>SOUSCRIRE</button>
                 
                     }
                 </div>}
