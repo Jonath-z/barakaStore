@@ -16,7 +16,7 @@ const Dashbord = () => {
     const [isNotifiedByMail, setIsNotifiedByMail] = useState(false);
     
     const openContent = (e) => {
-        console.log(e.target.innerHTML.toLowerCase());
+        // console.log(e.target.innerHTML.toLowerCase());
         if (e.target.innerHTML.toLowerCase().trim() === 'commandes') {
             setIsCommadContent(true);
             setIsGalleryContent(false);

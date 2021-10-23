@@ -20,17 +20,17 @@ const Gallerie = () => {
                     if (themeMemory.indexOf(theme) === -1) {
                         // themeMemory.push(theme);
                         setThemeMemory([...themeMemory, theme]);
-                        console.log(themeMemory);
+                        // console.log(themeMemory);
                     }
                     return (themeMemory);
                 })
-                console.log(photos);
+                // console.log(photos);
             }
         });
     }, [themeMemory]);
 
     const openForm = (e) => {
-            console.log(e.target.parentNode.firstChild.src);
+            // console.log(e.target.parentNode.firstChild.src);
             setmodel(e.target.parentNode.firstChild.src);
             setDisplayForm('block')
             window.scrollTo(0, 0);

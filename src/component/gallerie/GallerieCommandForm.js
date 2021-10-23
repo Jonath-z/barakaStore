@@ -40,12 +40,12 @@ const GallerieCommandForm = (props) => {
             storageRef.put(file).then((snapshot) => {
                 setUploadState((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 snapshot.ref.getDownloadURL().then(url => {
-                    console.log(url);
+                    // console.log(url);
                     setUploadedImg(url);
                 })
             })
           } catch (err) {
-            console.log(err);
+            // console.log(err);
           }
         
     }
@@ -100,7 +100,7 @@ const GallerieCommandForm = (props) => {
         setUploadedImg('');
         setUploadState('0');
         document.querySelector('.client-payement-proof').value = '';
-        console.log(today.toLocaleString())
+        // console.log(today.toLocaleString())
     }
     return (
 

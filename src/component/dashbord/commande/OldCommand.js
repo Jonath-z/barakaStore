@@ -8,7 +8,7 @@ const Oldcommand = () => {
         realTimeDB.ref('/valid-commades').on('value', (snapshot) => {
             if (snapshot.exists()) {
                 setValidCommand(Object.values(snapshot.val()));
-                console.log(Object.values(snapshot.val()));
+                // console.log(Object.values(snapshot.val()));
             }
         });
         realTimeDB.ref('/reject-commades').on('value', (snapshot) => {

@@ -53,11 +53,11 @@ const EditGallery = () => {
             storageRef.put(image).then((snapshot) => {
                 setUploadState((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 snapshot.ref.getDownloadURL().then(url => {
-                    console.log(url);
+                    // console.log(url);
                     setUploadedImg(url);
                 })
             })
-            console.log(image);
+            // console.log(image);
           } catch (err) {
             console.log(err);
           }
@@ -78,7 +78,7 @@ const EditGallery = () => {
         setUploadedImg('');
         setUploadState('0');
         document.querySelector('.client-payement-proof').value = '';
-        console.log(today.toLocaleString())
+        // console.log(today.toLocaleString())
     }
 
     return (
@@ -91,7 +91,7 @@ const EditGallery = () => {
                                 <img src={image} alt='gallery' className='editGallery-photos' />
                                 {!preventEmptyGallery && <div className='button-container'>
                                     <button className='delete-button'  onClick={(e) => {
-                                        console.log(e.target.parentNode.parentNode.children[0].src);
+                                        // console.log(e.target.parentNode.parentNode.children[0].src);
                                         storageDB.refFromURL(e.target.parentNode.parentNode.children[0].src); // delete photo in firestore
                                         realTimeDB.ref('/Gallerie').child(`${id}`).remove(); // delete photo in realTime bata base
                                     }}>Effacer</button>

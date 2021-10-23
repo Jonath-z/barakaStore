@@ -78,7 +78,7 @@ const Command = () => {
                                     onClick={
                                         (e) => {
                                             e.preventDefault();
-                                            console.log(command.clientEmail.toLowerCase());
+                                            // console.log(command.clientEmail.toLowerCase());
                                             emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                                 sujet: `Commade rejetée`,
                                                 to: `${command.clientEmail}`,
@@ -97,7 +97,7 @@ const Command = () => {
                                 <button className='command-button-validate' onClick={
                                     (e) => {
                                         e.preventDefault();
-                                        console.log(command.clientEmail.toLowerCase());
+                                        // console.log(command.clientEmail.toLowerCase());
                                         emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                             sujet: `Commade validée`,
                                             to: `${command.clientEmail}`,

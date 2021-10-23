@@ -40,7 +40,7 @@ const MailNotify = () => {
                             e.preventDefault();
                             if (allMails !== undefined) {
                                 allMails.map(({ client }) => {
-                                    console.log(client);
+                                    // console.log(client);
                                  return   emailjs.send(`${process.env.REACT_APP_EMAILJS_SERVICE_ID}`, `${process.env.REACT_APP_EMAILJS_VALIDATE_TEMPLETE_ID}`, {
                                         sujet: `${sujet}`,
                                         to: `${client}`,

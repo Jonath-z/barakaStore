@@ -100,7 +100,7 @@ export const Acceuil = (props) => {
             storageRef.put(file).then((snapshot) => {
                 setUploadState((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 snapshot.ref.getDownloadURL().then(url => {
-                    console.log(url);
+                    // console.log(url);
                     setUploadedImg(url);
                 })
             })
@@ -158,7 +158,7 @@ export const Acceuil = (props) => {
         setUploadState('0');
         setDate(new Date());
         document.querySelector('.client-payement-proof').value = '';
-        console.log(today.toLocaleString())
+        // console.log(today.toLocaleString())
     }
  
 
