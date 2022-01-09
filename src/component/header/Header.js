@@ -1,28 +1,21 @@
 import './Header.css';
-import { useHistory } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
+import { useHistory } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
 import { useState } from 'react';
-import {FaTimes} from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa';
+import { redirectToGallerie, redirectToAcceuil, redirectToCatalogue,redirectToSouscire } from '../../router/Router';
 
 const Header = (props) => {
     const [isMenueResponsive, setIsMenuResponsive] = useState(false);
     let history = useHistory();
-    const redirectToGallerie = () => {
-        history.push('/Gallerie');
-    }
-    const redirectToAcceuil = () => {
-        history.push('/');
-    }
-    const redirectToCatalogue = () => {
-        history.push('/Catalogue');
+    const closeMenu = () => {
+        setIsMenuResponsive(false);
     }
     const openMenu = () => {
         setIsMenuResponsive(true);
     }
-    const closeMenu = () => {
-        setIsMenuResponsive(false);
-    }
+    
     return (
         <>
             <div className='Header'>
@@ -57,17 +50,17 @@ const Header = (props) => {
                 <MediaQuery minWidth={501} maxWidth={2000}>
                     <div className='header-option-container'>
                         <ul className='option-ul header-ul'>
-                            <li className='option-li header-li' onClick={redirectToAcceuil} style={{
+                            <li className='option-li header-li' onClick={()=>redirectToAcceuil(history)} style={{
                                 borderBottom: props.acceuilBorder
                             }}>Acceuil</li>
-                            <li className='option-li option-gallerie header-li' onClick={redirectToGallerie} style={{
+                            <li className='option-li option-gallerie header-li' onClick={()=>redirectToGallerie(history)} style={{
                                 borderBottom: props.gallerieBorder
                             }}>Gallerie</li>
-                            <li className='option-li option-catalogue header-li' onClick={redirectToCatalogue} style={{
+                            <li className='option-li option-catalogue header-li' onClick={()=>redirectToCatalogue(history)} style={{
                                 borderBottom: props.catalogueBorder
                             }}>Catalogue</li>
                             <li className='option-li option-login header-li' onClick={() => {
-                                history.push('/Souscrire')
+                                redirectToSouscire(history);
                             }} style={{
                                 borderBottom: props.souscrireBorder
                             }}>Souscrire</li>
