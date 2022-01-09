@@ -11,3 +11,6 @@ export const redirectToCatalogue = (history) => {
 export const redirectToSouscire = (history) => {
     history.push('/Souscrire');
 }
+export const redirectToCommande = (history) => {
+    history.push('/passer-une-commande')
+}

@@ -2,13 +2,15 @@ import '../acceuil/Acceuil.css';
 import { useState,useEffect } from 'react';
 import { storageDB, realTimeDB } from '../modules/firebase';
 import uuid from 'react-uuid';
-// import MediaQuery from 'react-responsive';
+import MediaQuery from 'react-responsive';
 import emailjs from 'emailjs-com';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import TextareaAutosize from "react-textarea-autosize";
+import Header from '../header/Header';
+import { useSelector } from 'react-redux';
 
 
 
@@ -25,6 +27,10 @@ export const InputForms = (props) => {
     const [uploadState, setUploadState] = useState(0);
     const [options, setOptions] = useState();
     const [date, setDate] = useState(new Date());
+    // const [hiddenFormComponent, sethiddenFormComponent] = useState(false);
+
+    const isHidden = useSelector((state) => state.hide);
+    // console.log(isHidden);
 
     useEffect(() => {
         realTimeDB.ref('/offers').on('value', (snapshot) => {
@@ -106,12 +112,15 @@ export const InputForms = (props) => {
 
     return (
         <>
+            <MediaQuery minWidth={300} maxWidth={1024}>
+            <Header/>
+            </MediaQuery>
             <div className='acceuil home-page-component'>
                 <h3 className='welcome-h3'>Passez votre commande chez BarakaStore</h3>
                 <div className='acceuil-client-form'>
                     <h4 className='client-title'>Client</h4>
                     <input className='client-form-mail' type='email' placeholder='Email' value={clientEmail} name='clientMail' onChange={(e) => { setClientEmail(e.target.value) }} />
-                    <PhoneInput international countryCallingCodeEditable={false} defaultCountry='CD' placeholder='phone' className='client-form-phone' value={clientPhone} name='clientPhone' onChange={setClientPhone} />
+                    {!isHidden && <PhoneInput international countryCallingCodeEditable={false} defaultCountry='CD' placeholder='phone' className='client-form-phone' value={clientPhone} name='clientPhone' onChange={setClientPhone} />}
                     <h5 className='select-title'>Veuillez choisir le bouquet</h5>
                     <select className='main-form-select-price' onChange={(e) => { setPrice(e.target.value) }}>
                         <option value=''>choisir le bouquet</option>
@@ -122,15 +131,15 @@ export const InputForms = (props) => {
                         }
                     </select>
                     <h5 className='select-title'>Date et heure de livraison (48H minimum)</h5>
-                    <Datetime dateFormat={true} value={date} className='client-form-mail date-input' placeholder='Date' onChange={setDate} />
+                    {!isHidden && <Datetime dateFormat={true} value={date} className='client-form-mail date-input' placeholder='Date' onChange={setDate} />}
                 </div>
                 <div className='acceuil-client-form'>
                     <h4 className='client-title'>Destination</h4>
                     {/* <img src={uploadedImg} alt='uploaded'/> */}
                     <input className='client-form-mail' type='email' placeholder='Email (optionel)' value={destinationEmail} name='destinationMail' onChange={(e) => { setDestinationEmail(e.target.value) }} />
                     <input className='client-form-name' type='text' placeholder='Nom' value={destinationName} name='destinationName' onChange={(e) => { setDestinationName(e.target.value) }} />
-                    <PhoneInput international countryCallingCodeEditable={false} defaultCountry='CD' placeholder='phone' className='client-form-phone' value={destinationPhone} name='destinationPhone' onChange={setDestinationPhone} />
-                    <TextareaAutosize placeholder='Couleur de roses,Adresse du destinateur et autre préférences' className='client-text-textarea' value={commadDetails} name='commandDetails' onChange={(e) => { setCommandDetails(e.target.value) }} />
+                    {!isHidden && <PhoneInput international countryCallingCodeEditable={false} defaultCountry='CD' placeholder='phone' className='client-form-phone' value={destinationPhone} name='destinationPhone' onChange={setDestinationPhone} />}
+                    {!isHidden && <TextareaAutosize placeholder='Couleur de roses,Adresse du destinateur et autre préférences' className='client-text-textarea' value={commadDetails} name='commandDetails' onChange={(e) => { setCommandDetails(e.target.value) }} />}
                     <h5 className='select-title'>Preuve de paiyement     (<span>chargement: {uploadState}%</span>)</h5>
                     <input type='file' name='payementProof' className='client-payement-proof' onChange={uploadProof} />
                 </div>

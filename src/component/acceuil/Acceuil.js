@@ -9,32 +9,28 @@ import MediaQuery from 'react-responsive';
 import 'react-phone-number-input/style.css';
 import "react-datetime/css/react-datetime.css";
 import { HeaderPhoneMedia } from '../header/mediaqueries/HeaderPhoneMedia';
+import { redirectToGallerie, redirectToCatalogue, redirectToSouscire, redirectToAcceuil } from '../../router/Router';
+import InputForms from '../order/InputForms';
 
 // ///////////////////////////////// ACCEUIL ///////////////////////////////////
 export const Acceuil = () => {
     let history = useHistory();
-    const redirectToGallerie = () => {
-        history.push('/Gallerie');
-    }
-    const redirectToCatalogue = () => {
-        history.push('/Catalogue');
-    }
     return (
         <>
-            <div className='main home-page-component'>
-                <MediaQuery minWidth={501} maxWidth={2000}>
-                    <div className='main-option-container'>
+            <div className='main home-page-component'> 
+                 <MediaQuery minWidth={1024} maxWidth={20000}>
+                     <div className='main-option-container'>
                         <ul className='option-ul'>
-                            <li className='option-li option-acceuil'>Acceuil</li>
-                            <li className='option-li option-gallerie' onClick={redirectToGallerie}>Gallerie</li>
-                            <li className='option-li option-catalogue' onClick={redirectToCatalogue}>Catalogue</li>
-                            <li className='option-li option-sousrire' onClick={() => {
-                                history.push('/Souscrire')
+                            <li className='option-li-desk option-acceuil' onClick={()=> redirectToAcceuil(history)}>Acceuil</li>
+                            <li className='option-li-desk option-gallerie' onClick={()=>redirectToGallerie(history)}>Gallerie</li>
+                            <li className='option-li-desk option-catalogue' onClick={()=>redirectToCatalogue(history)}>Catalogue</li>
+                            <li className='option-li-desk option-sousrire' onClick={() => {
+                                redirectToSouscire(history);
                             }}>Souscrire</li>
                         </ul>
-                    </div>
-                </MediaQuery>
-                <div className='main-logo-container'>
+                    </div> 
+                </MediaQuery> 
+                 <div className='main-logo-container'>
                     <img src={logo} alt='logo' className='logo' />
                 </div>
                 <div className='main-icons-container'>
@@ -45,11 +41,20 @@ export const Acceuil = () => {
                         <a href='https://www.instagram.com/barakastoredrc/'><li className='icons-li'><IoLogoInstagram /></li></a>
                     </ul>
                 </div>
-                <MediaQuery minWidth={300} maxWidth={500}>
-                    <HeaderPhoneMedia/>
-                </MediaQuery>
-            </div>
-        </>
+            </div> 
+
+            <MediaQuery minWidth={300} maxWidth={1024}>
+                <HeaderPhoneMedia />
+            </MediaQuery>
+            <MediaQuery minWidth={1024} maxWidth={20000}>
+                <div style={{
+                    width: '50%',
+                    marginLeft:'50%'
+                }}>
+                    <InputForms />
+                </div>
+            </MediaQuery>
+        </> 
     );
 }
 

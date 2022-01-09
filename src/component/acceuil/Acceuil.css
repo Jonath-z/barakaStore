@@ -202,7 +202,7 @@ input[type=file]::file-selector-button:hover{
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 .App{
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
 }
 .main{
     width: 50%;
@@ -239,10 +239,24 @@ input[type=file]::file-selector-button:hover{
     margin-left: 50px;
     font-size: 30px;
     font-family: 'Quicksand';
-    color: #008000;
+    color: #fff;
     cursor: pointer;
+    padding: 10px 0px 10px 0px;
 }
 .option-li:hover{
+    transform: scale(1.2,1.2);
+    transition: 300ms;
+}
+.option-li-desk{
+    list-style: none;
+    margin-left: 50px;
+    font-size: 30px;
+    font-family: 'Quicksand';
+    color: #008000;
+    cursor: pointer;
+    padding: 10px 0px 10px 0px;
+}
+.option-li-desk:hover{
     transform: scale(1.2,1.2);
     transition: 300ms;
 }
@@ -305,7 +319,7 @@ input[type=file]::file-selector-button:hover{
 }
 
 /* ************************************* MEDIA QUERIES ***************************************8 */
-@media(max-width:500px){
+@media screen and (max-width:500px){
     .App{
         display: grid;
         grid-template-rows: 1fr;
@@ -328,6 +342,7 @@ input[type=file]::file-selector-button:hover{
  .welcome-h3{
     text-align: center;
     padding: 0px 5px 0px 5px;
+    margin-top: 5em;
 }
 .client-form-mail,.client-form-name{
     width: 25em;
@@ -383,9 +398,10 @@ margin: auto;
     margin-left: 20px;
     font-size: 18px;
     font-family: 'Quicksand';
-    color: #008000;
+    color: #fff;
     cursor: pointer;
     display: inline;
+    padding: 10px 0px 10px 0px;
 }
 .option-li:hover{
     transform: scale(1.2,1.2);
@@ -435,9 +451,10 @@ justify-content: center;
         margin-left: 10px;
         font-size: 18px;
         font-family: 'sawasdee';
-        color: #008000;
+        color: #fff;
         cursor: pointer;
         display: inline;
+        padding: 10px 0px 10px 0px;
     }
     .icons-li {
         margin-left: 40px;
@@ -456,7 +473,8 @@ justify-content: center;
         bottom: 0;
         cursor: pointer;
         width: 100%;
-    
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
     
     .phone-open-menu-icon{
@@ -495,6 +513,8 @@ justify-content: center;
     .welcome-h3{
         text-align: center;
         padding: 0px 5px 0px 5px;
+        margin-top: 10em;
+        margin-bottom: 0px;
     }
     .phone-open-menu-band{
         font-size: 30px;
@@ -505,6 +525,8 @@ justify-content: center;
         bottom: 0;
         cursor: pointer;
         width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     
     }
     
@@ -562,6 +584,8 @@ justify-content: center;
         bottom: 0;
         cursor: pointer;
         width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     
     }
     
@@ -612,6 +636,8 @@ justify-content: center;
         bottom: 0;
         cursor: pointer;
         width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     
     }
     
@@ -695,8 +721,9 @@ justify-content: center;
         margin-left: 0px;
         font-size: 30px;
         font-family: 'sawasdee';
-        color: #008000;
+        color: #fff;
         cursor: pointer;
+        padding: 10px 0px 10px 0px;
     }
     .main-icons-container {
         width: 0;
@@ -705,6 +732,33 @@ justify-content: center;
     }
     .icons-ul {
         margin-left: 300px;
+    }
+    .phone-open-menu-band{
+        font-size: 30px;
+        display: block;
+        text-align: center;
+        background-color: #008000;
+        position: absolute;
+        bottom: 0;
+        cursor: pointer;
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    
+    }
+    
+    .phone-open-menu-icon{
+        color: #000809;
+        padding: 10px 0px 10px 0px;
+        animation: upToDown 400ms linear infinite;
+    }
+    @keyframes upToDown {
+        from{
+            bottom: 10px;
+        }
+        to{
+            bottom: -10px;
+        }
     }
 }
 @media screen and (width:1024px){
@@ -723,5 +777,32 @@ justify-content: center;
     }
     .icons-ul {
         margin-left: 410px;
+    }
+    .phone-open-menu-band{
+        font-size: 30px;
+        display: block;
+        text-align: center;
+        background-color: #008000;
+        position: absolute;
+        bottom: 0;
+        cursor: pointer;
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    
+    }
+    
+    .phone-open-menu-icon{
+        color: #000809;
+        padding: 10px 0px 10px 0px;
+        animation: upToDown 400ms linear infinite;
+    }
+    @keyframes upToDown {
+        from{
+            bottom: 10px;
+        }
+        to{
+            bottom: -10px;
+        }
     }
 }

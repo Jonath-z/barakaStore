@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { redirectToSouscire,redirectToGallerie,redirectToCatalogue } from '../../../../router/Router';
+import { redirectToSouscire,redirectToGallerie,redirectToCatalogue,redirectToCommande } from '../../../../router/Router';
 
 const Menu = () => {
     let history = useHistory();
@@ -10,14 +10,16 @@ const Menu = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                alignItems:'center'
+                alignItems: 'center',
+                paddingLeft: '0px',
+                marginTop:'5px'
             }}>
-                <li className='option-li option-acceuil'>Acceuil</li>
-                <li className='option-li option-gallerie' onClick={()=>redirectToGallerie(history)}>Gallerie</li>
-                <li className='option-li option-catalogue' onClick={()=>redirectToCatalogue(history)}>Catalogue</li>
-                <li className='option-li option-sousrire' onClick={() => {
+                <li className='option-li' onClick={() => redirectToGallerie(history)}>Gallerie</li>
+                <li className='option-li' onClick={() => {
                     redirectToSouscire(history);
                 }}>Souscrire</li>
+                <li className='option-li' onClick={() => redirectToCatalogue(history)}>Catalogue</li>
+                 <li className='option-li' onClick={()=>redirectToCommande(history)}>Passez la commande</li>
             </ul>
         </div>
     )

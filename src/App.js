@@ -20,11 +20,11 @@ function App() {
               {/* <div className='app-main'> */}
               <Acceuil />
               {/* </div> */}
-              <MediaQuery minWidth={587} maxWidth={20000}>
+              {/* <MediaQuery minWidth={587} maxWidth={20000}>
                 <div className='option-content'>
                   <InputForms />
                 </div>
-              </MediaQuery>
+              </MediaQuery> */}
             </div>
           </>
         )} />
@@ -34,7 +34,7 @@ function App() {
         <Route path='/Catalogue' component={Catalogue} />
         <Route path='/Souscrire' component={Souscrire} />
         <Route path='/Anciennes-commandes' component={Oldcommand} />
-        <MediaQuery minWidth={300} maxWidth={587}>
+        <MediaQuery minWidth={300} maxWidth={1024}>
           <Route path='/passer-une-commande' component={InputForms} />
         </MediaQuery>
       </>

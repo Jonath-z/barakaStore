@@ -48,7 +48,19 @@
 
 /* ****************** MEDIA QUERIES ********************/
 
-@media(max-width: 500px){
+@media(max-width: 1024px){
+    .Header{
+        position: relative;
+        width: 100%;
+        background: #008000;
+        /* background: pink; */
+        /* color: #008000; */
+        display: flex;
+        flex-direction: row;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
     .header-startup-name-container{
         margin-left: unset;
         float: left;
@@ -144,7 +156,7 @@
     }
 }
 
-@media screen and (min-width:768px) and (max-width:1024px){
+/* @media screen and (min-width:768px) and (max-width:1024px){
     .header-startup-name-container {
         margin-left: 20px;
     }
@@ -159,4 +171,4 @@
         font-family: 'sawasdee';
         cursor: pointer;
     }
-}
+} */

@@ -18,23 +18,19 @@ export const HeaderPhoneMedia = () => {
             {
                 !isOpenMenu ?
                     <div className='phone-open-menu-band'>
-                        <RiArrowUpSLine className="phone-open-menu-icon" onClick={openMenu}/>
+                        <RiArrowUpSLine className="phone-open-menu-icon" onClick={openMenu} />
                     </div>
                     :
-                    <div>
+                    <div className='phone-open-menu-band'>
                         <RiArrowDownSLine
+                            className='phone-open-menu-icon'
                             onClick={closeMenu}
-                            style={{
-                                fontSize: '30px',
-                                color: '008000',
-                            }}
                         />
+                        {
+                            isOpenMenu && <Menu/>
+                        }
                     </div>
                         
-            }
-           
-            {
-                isOpenMenu && <Menu />
             }
         </div>
     );
