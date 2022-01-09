@@ -806,3 +806,14 @@ justify-content: center;
         }
     }
 }
+@media screen and (width:1349px){
+    .logo {
+        width: 600px;
+    }
+    .main-icons-container {
+        width: 0;
+        animation: fromBottom 500ms ease-in;
+        margin-top: 300px;
+        margin-left: -40px;
+    }
+}
